@@ -23,8 +23,8 @@ public class Enemy : MonoBehaviour
 
 		while (target != null)
 		{
-			Vector3 targePosition = new Vector3(target.position.x, 0, target.position.z);
-			pathfinder.SetDestination (target.position);
+			Vector3 targetPosition = new Vector3(target.position.x, 0, target.position.z);
+			pathfinder.SetDestination (targetPosition);
 			yield return new WaitForSeconds(refreshRate);
 		}
 	}

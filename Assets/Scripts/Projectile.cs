@@ -14,9 +14,9 @@ public class Projectile : MonoBehaviour {
 		
 	void Update ()
 	{
-		float moveDistance = speed * Time.fixedDeltaTime;
+		float moveDistance = speed * Time.deltaTime;
 		CheckCollisions (moveDistance);
-		this.transform.Translate (Vector3.forward * Time.deltaTime * speed);
+		this.transform.Translate (Vector3.forward * moveDistance);
 	}
 
 	void CheckCollisions(float moveDistance)

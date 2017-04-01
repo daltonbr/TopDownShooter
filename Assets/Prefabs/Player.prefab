@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 114352821962782378}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,6 +178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0841ff1b2e3164d3aa5891cd85738b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  muzzle: {fileID: 0}
+  projectile: {fileID: 0}
+  msBetweenShots: 100
+  muzzleVelocity: 35
 --- !u!136 &136448301860371718
 CapsuleCollider:
   m_ObjectHideFlags: 1

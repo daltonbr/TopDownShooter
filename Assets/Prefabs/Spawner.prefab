@@ -56,4 +56,6 @@ MonoBehaviour:
     timeBetweenSpawns: 3
   - enemyCount: 5
     timeBetweenSpawns: 2
+  - enemyCount: 4
+    timeBetweenSpawns: 5
   enemy: {fileID: 114230300785880278, guid: 330144030db6e48abb32af47c18650dd, type: 2}

@@ -119,7 +119,7 @@ public class MapGenerator : MonoBehaviour
                     int neighbourX = tile.x + x;
                     int neighbourY = tile.y + y;
                     // in fact we are just interested in the horizontal and vertical neighbours (we don't check the diagonals)
-                    if (x==0 || y ==0)
+                    if (x==0 ^ y ==0)  // using XOR operator, instead of equals we skip the current tile (that we don't need to check)
                     {
                         // check if this neighbours are INSIDE the map (checking the borders)
                         if (neighbourX >= 0 && neighbourX < obstacleMap.GetLength(0) && neighbourY >= 0 && neighbourY < obstacleMap.GetLength(1))

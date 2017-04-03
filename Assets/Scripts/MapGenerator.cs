@@ -37,9 +37,7 @@ public class MapGenerator : MonoBehaviour
         //Assert.AreNotEqual(0f, currentMap.mapSize.y, "MapGenerator::currentMap.maxSize.y couldn't be 0");
         //Assert.AreNotEqual(0f, maxMapSize.x, "MapGenerator::maxMapSize.x couldn't be 0");
         //Assert.AreNotEqual(0f, maxMapSize.y, "MapGenerator::maxMapSize.y couldn't be 0");
-    }
-    private void Start()
-    {
+
         GenerateMap();
     }
 

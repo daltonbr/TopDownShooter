@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-[RequireComponent (typeof(BoxCollider))]
+[RequireComponent(typeof(BoxCollider))]
 public class MapGenerator : MonoBehaviour
 {
 
@@ -16,7 +16,7 @@ public class MapGenerator : MonoBehaviour
     public Transform navmeshMaskPrefab;
     public Vector2 maxMapSize;
 
-    [Range(0,1)]
+    [Range(0, 1)]
     public float outlinePercent;
 
     public float tileSize = 1f;
@@ -38,6 +38,13 @@ public class MapGenerator : MonoBehaviour
         //Assert.AreNotEqual(0f, maxMapSize.x, "MapGenerator::maxMapSize.x couldn't be 0");
         //Assert.AreNotEqual(0f, maxMapSize.y, "MapGenerator::maxMapSize.y couldn't be 0");
 
+        // Subscribe this.OnNewWave to the event on Spawner
+        FindObjectOfType<Spawner>().OnNewWave += this.OnNewWave;
+    }
+
+    void OnNewWave(int waveNumber)
+    {
+        mapIndex = waveNumber - 1;
         GenerateMap();
     }
 

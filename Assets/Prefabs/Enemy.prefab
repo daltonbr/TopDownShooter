@@ -94,7 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0749d29c4fd9f460e891e9f204e98f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 5
+  startingHealth: 3
+  deathEffect: {fileID: 1347207440442022, guid: 918f134762cad51408351c8c77e474c8,
+    type: 2}
 --- !u!136 &136050463223949474
 CapsuleCollider:
   m_ObjectHideFlags: 1

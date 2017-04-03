@@ -10,6 +10,8 @@ public class Enemy : LivingEntity
     public enum State {Idle, Chasing, Attacking};
     State currentState;
 
+    public GameObject deathEffect;
+
 	NavMeshAgent pathfinder;
 	Transform target;
     LivingEntity targetEntity;
@@ -48,6 +50,16 @@ public class Enemy : LivingEntity
 		    StartCoroutine(UpdatePath ());
         }
 	}
+
+    public override void TakeHit(float damage, Vector3 hitPoint, Vector3 hitDirection)
+    {
+        // Instantiating death effect
+        if (damage >= health)
+        {
+            Destroy(Instantiate(deathEffect, hitPoint, Quaternion.FromToRotation(Vector3.forward, hitDirection)) as GameObject, 2);
+        }
+        base.TakeHit(damage, hitPoint, hitDirection);
+    }
 
     void OnTargetDeath()
     {

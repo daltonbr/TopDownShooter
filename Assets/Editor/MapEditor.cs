@@ -21,11 +21,11 @@ public class MapEditor : Editor {
         }
 
         // or update just when we press this buttom
-        if (GUILayout.Button("Generate Map"))
-        {
-            Debug.Log("Generating map");
-            //MapGenerator map = target as MapGenerator;
-            //map.GenerateMap();
-        }
+        //if (GUILayout.Button("Generate Map"))
+        //{
+        //    Debug.Log("Generating map");
+        //    MapGenerator map = target as MapGenerator;
+        //    map.GenerateMap();
+        //}
     }
 }

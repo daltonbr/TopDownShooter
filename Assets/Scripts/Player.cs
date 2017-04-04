@@ -6,6 +6,7 @@ using System.Collections;
 [RequireComponent(typeof(GunController))]
 public class Player : LivingEntity
 {
+    public bool isInvencible = false;
     public float moveSpeed = 5f;
 	Camera viewCamera;
     PlayerController controller;
@@ -17,6 +18,19 @@ public class Player : LivingEntity
         controller = GetComponent<PlayerController>();
 		gunController = GetComponent<GunController>();
 		viewCamera = Camera.main;
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        if (!isInvencible)
+        {
+            health -= damage;
+        }
+
+        if (health <= 0 && !dead)
+        {
+            Die();
+        }
     }
 
     void Update()
@@ -39,10 +53,16 @@ public class Player : LivingEntity
 			controller.LookAt(point);
 		}
 
-		// Weapon Input
+    	// Weapon Input
+        // Mouse pressed
 		if (Input.GetMouseButton(0))
 		{
-			gunController.Shoot();
+			gunController.OnTriggerHold();
 		}
+        // Mouse release
+        if (Input.GetMouseButtonUp(0))
+        {
+            gunController.OnTriggerRelease();
+        }
     }
 }

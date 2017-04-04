@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-[RequireComponent(typeof(BoxCollider))]
+//[RequireComponent(typeof(BoxCollider))]
 public class MapGenerator : MonoBehaviour
 {
 
@@ -12,6 +12,7 @@ public class MapGenerator : MonoBehaviour
 
     public Transform tilePrefab;
     public Transform obstaclePrefab;
+    public Transform mapFloor;
     public Transform navmeshFloor;
     public Transform navmeshMaskPrefab;
     public Vector2 maxMapSize;
@@ -33,6 +34,7 @@ public class MapGenerator : MonoBehaviour
         Assert.IsNotNull(obstaclePrefab);
         Assert.IsNotNull(navmeshFloor);
         Assert.IsNotNull(navmeshMaskPrefab);
+        Assert.IsNotNull(mapFloor);
         //Assert.AreNotEqual(0f, currentMap.mapSize.x, "MapGenerator::currentMap.maxSize.x couldn't be 0");
         //Assert.AreNotEqual(0f, currentMap.mapSize.y, "MapGenerator::currentMap.maxSize.y couldn't be 0");
         //Assert.AreNotEqual(0f, maxMapSize.x, "MapGenerator::maxMapSize.x couldn't be 0");
@@ -53,7 +55,6 @@ public class MapGenerator : MonoBehaviour
         currentMap = maps[mapIndex];
         tileMap = new Transform[currentMap.mapSize.x, currentMap.mapSize.y];
         System.Random prng = new System.Random(currentMap.seed);
-        GetComponent<BoxCollider>().size = new Vector3(currentMap.mapSize.x * tileSize, 0.5f, currentMap.mapSize.y * tileSize);
 
         // Generating Coords
         allTileCoords = new List<Coord>();
@@ -152,6 +153,7 @@ public class MapGenerator : MonoBehaviour
 
         // rescale the navmeshFloor
         navmeshFloor.localScale = new Vector3(maxMapSize.x, maxMapSize.y) * tileSize;
+        mapFloor.localScale = new Vector3(currentMap.mapSize.x * tileSize, currentMap.mapSize.y * tileSize, 0.5f);
     }
 
     // A flood fill algorithm, starts at center (always empty) expanding to borders

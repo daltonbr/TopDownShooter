@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class Gun : MonoBehaviour {
 
@@ -11,10 +12,17 @@ public class Gun : MonoBehaviour {
 
     public Transform shell;
     public Transform shellEjection;
+    MuzzleFlash muzzleFlash;
 
 	float nextShotTime;
 
-	public void Shoot()
+    private void Start()
+    {
+        muzzleFlash = GetComponent<MuzzleFlash>();
+        Assert.IsNotNull(muzzleFlash, "Gun::Start - Can't find MuzzleFlash Component!");
+    }
+
+    public void Shoot()
 	{
 		if (Time.time > nextShotTime)
 		{
@@ -23,6 +31,7 @@ public class Gun : MonoBehaviour {
 			newProjectile.SetSpeed (muzzleVelocity);
 
             Instantiate(shell, shellEjection.position, shellEjection.rotation);
+            muzzleFlash.Activate();
 		}
 	}
 

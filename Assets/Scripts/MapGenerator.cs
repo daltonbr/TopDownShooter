@@ -87,7 +87,8 @@ public class MapGenerator : MonoBehaviour
                 
                 //Instantiate our tile rotate 90 degrees, in order to be flat on the ground
                 Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
-                newTile.localScale = Vector3.one * (1 - outlinePercent) * tileSize;
+				newTile.name = "tile" + x + "-" + y;
+				newTile.localScale = Vector3.one * (1 - outlinePercent) * tileSize;
                 newTile.parent = mapHolder;
                 tileMap[x, y] = newTile;
             }

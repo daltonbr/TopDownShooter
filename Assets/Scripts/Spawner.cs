@@ -10,6 +10,7 @@ public class Spawner : MonoBehaviour {
 
     public Wave[] waves;
     public Enemy enemy;
+    public Color initialTileColor = Color.white;
 
     LivingEntity playerEntity;
     Transform playerT;
@@ -20,6 +21,7 @@ public class Spawner : MonoBehaviour {
     int enemiesRemainingToSpawn;
     int enemiesRemainingAlive;
     float nextSpawnTime;
+
 
     MapGenerator map;
 
@@ -97,7 +99,7 @@ public class Spawner : MonoBehaviour {
             spawnTile = map.GetTileFromPosition(playerT.position);
         }
         Material tileMat = spawnTile.GetComponent<Renderer>().material;
-        Color initialColor = tileMat.color;
+        Color initialColor = initialTileColor;
         Color flashColor = Color.red;
         float spawnTimer = 0f;
 

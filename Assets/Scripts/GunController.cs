@@ -42,4 +42,12 @@ public class GunController : MonoBehaviour {
         }
     }
 
+    public float GunHeight
+    {
+        get
+        {
+            return weaponHold.position.y;
+        }
+    }
+
 }

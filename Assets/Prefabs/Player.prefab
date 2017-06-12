@@ -22,7 +22,7 @@ GameObject:
   m_Layer: 0
   m_Name: WeaponHold
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1654036009018553494, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -69,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1001898737045502}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalPosition: {x: 0.25, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4060152206882456}
@@ -144,6 +144,7 @@ MonoBehaviour:
   isInvencible: 1
   moveSpeed: 5
   crosshairs: {fileID: 0}
+  thresholdCursorDistanceSquared: 1
 --- !u!114 &114206832340054318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,8 +168,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponHold: {fileID: 4510112870031142}
-  startingGun: {fileID: 114990632856421276, guid: a8ea4dd906c624412a6a6f85389629b7,
-    type: 2}
+  allGuns:
+  - {fileID: 11410872, guid: be40e0d31818f4592bef4bcccb0cf1ca, type: 2}
+  - {fileID: 11475382, guid: d603f2009b9424db0b921341cb3d3784, type: 2}
+  - {fileID: 11476506, guid: 488036bd9f9b04426a34fedb9079f997, type: 2}
+  - {fileID: 11476730, guid: 2e1ce6894843d42429ac1523bf278404, type: 2}
+  - {fileID: 11456016, guid: f7293d2c7785040f1934c99e7fa89fe1, type: 2}
 --- !u!136 &136448301860371718
 CapsuleCollider:
   m_ObjectHideFlags: 1

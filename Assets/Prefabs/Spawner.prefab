@@ -51,9 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261d3f3621ec82d4dbb36f692346cbcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  devMode: 1
   waves:
   - infinite: 0
-    enemyCount: 40
+    enemyCount: 0
     timeBetweenSpawns: 0.7
     moveSpeed: 2.2
     hitsToKillPlayer: 5
@@ -88,3 +89,4 @@ MonoBehaviour:
     enemyHealth: 1
     skinColor: {r: 0, g: 0, b: 0, a: 0.491}
   enemy: {fileID: 114230300785880278, guid: 330144030db6e48abb32af47c18650dd, type: 2}
+  initialTileColor: {r: 1, g: 1, b: 1, a: 1}

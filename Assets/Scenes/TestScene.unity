@@ -14427,11 +14427,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114697559737509298, guid: 8f842770af7dc534bb7ed8e23fa386d8,
-        type: 2}
-      propertyPath: devMode
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f842770af7dc534bb7ed8e23fa386d8, type: 2}
   m_IsPrefabParent: 0
@@ -21060,6 +21055,15 @@ Prefab:
       propertyPath: crosshairs
       value: 
       objectReference: {fileID: 931815999}
+    - target: {fileID: 1001898737045502, guid: 4183a08f4e85ef0438587b47ee806280, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 1654036009018553494, guid: 0000000000000000d000000000000000,
+        type: 0}
+    - target: {fileID: 4510112870031142, guid: 4183a08f4e85ef0438587b47ee806280, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4183a08f4e85ef0438587b47ee806280, type: 2}
   m_IsPrefabParent: 0

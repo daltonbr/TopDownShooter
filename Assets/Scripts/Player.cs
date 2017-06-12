@@ -9,7 +9,8 @@ public class Player : LivingEntity
     public bool isInvencible = false;
     public float moveSpeed = 5f;
     public Crosshairs crosshairs;
-	Camera viewCamera;
+    public float thresholdCursorDistanceSquared = 1f;
+    Camera viewCamera;
     PlayerController controller;
 	GunController gunController;
 
@@ -54,6 +55,13 @@ public class Player : LivingEntity
 			controller.LookAt(point);
             crosshairs.transform.position = point;
             crosshairs.DetectTargets(ray);
+            // Tweak for the gun not twist when following the cursor (sqrMagnitude is faster)
+            if ((new Vector2(point.x, point.z) - new Vector2(transform.position.x, transform.position.z)).sqrMagnitude > thresholdCursorDistanceSquared)
+            {
+                gunController.Aim(point);
+            }
+            
+            
 		}
 
     	// Weapon Input
@@ -66,6 +74,10 @@ public class Player : LivingEntity
         if (Input.GetMouseButtonUp(0))
         {
             gunController.OnTriggerRelease();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            gunController.Reload();
         }
     }
 }

@@ -355,7 +355,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.3015137, y: 78.83688, z: -2.483933}
+  m_LocalPosition: {x: 3, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 434124}
@@ -404,7 +404,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 37c41729ea7974905bdd14250fe1fbe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -436,7 +436,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 37c41729ea7974905bdd14250fe1fbe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -468,7 +468,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 37c41729ea7974905bdd14250fe1fbe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -500,7 +500,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 37c41729ea7974905bdd14250fe1fbe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -532,7 +532,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 37c41729ea7974905bdd14250fe1fbe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -654,13 +654,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0841ff1b2e3164d3aa5891cd85738b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireMode: 0
-  projectileSpawn: []
-  projectile: {fileID: 0}
+  fireMode: 2
+  projectileSpawn:
+  - {fileID: 417700}
+  projectile: {fileID: 114315445907816836, guid: 4a4d14290062545daa4efbc0ceab5b17,
+    type: 2}
   msBetweenShots: 100
-  muzzleVelocity: 35
+  muzzleVelocity: 25
   burstCount: 3
-  projectilesPerMag: 0
+  projectilesPerMag: 12
   reloadTime: 0.3
   kickMinMax: {x: 0.05, y: 0.2}
   recoilAngleMinMax: {x: 3, y: 5}

@@ -11,6 +11,7 @@ public class GunController : MonoBehaviour {
 	void Start()
 	{
 
+
 	}
 
 	public void EquipGun(Gun gunToEquip)

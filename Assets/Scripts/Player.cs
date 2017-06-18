@@ -43,6 +43,7 @@ public class Player : LivingEntity
     void OnNewWave(int waveNumber)
     {
         health = startingHealth;
+        //TODO: check if this gun index really exist
         gunController.EquipGun(waveNumber - 1);
     }
 

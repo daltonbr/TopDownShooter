@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 483700}
   m_Layer: 0
-  m_Name: Projectile Spawn 01 (1)
+  m_Name: Projectile Spawn 02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -186,7 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 436822}
   m_Layer: 0
-  m_Name: Projectile Spawn 01 (2)
+  m_Name: Projectile Spawn 03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,7 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 449122}
   m_Layer: 0
-  m_Name: Projectile Spawn 01 (3)
+  m_Name: Projectile Spawn 04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,7 +399,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.287985, y: 78.25195, z: -2.0314212}
+  m_LocalPosition: {x: 2, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 491308}
@@ -522,7 +522,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 37c41729ea7974905bdd14250fe1fbe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -554,7 +554,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 37c41729ea7974905bdd14250fe1fbe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -586,7 +586,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 37c41729ea7974905bdd14250fe1fbe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -618,7 +618,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 37c41729ea7974905bdd14250fe1fbe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -650,7 +650,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 37c41729ea7974905bdd14250fe1fbe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -682,7 +682,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 37c41729ea7974905bdd14250fe1fbe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -791,14 +791,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireMode: 0
-  projectileSpawn: []
+  projectileSpawn:
+  - {fileID: 498204}
+  - {fileID: 483700}
+  - {fileID: 436822}
+  - {fileID: 449122}
   projectile: {fileID: 114315445907816836, guid: 4a4d14290062545daa4efbc0ceab5b17,
     type: 2}
   msBetweenShots: 100
-  muzzleVelocity: 35
+  muzzleVelocity: 25
   burstCount: 3
-  projectilesPerMag: 0
-  reloadTime: 0.3
+  projectilesPerMag: 50
+  reloadTime: 0.6
   kickMinMax: {x: 0.05, y: 0.2}
   recoilAngleMinMax: {x: 3, y: 5}
   recoilMoveSettleTime: 0.1

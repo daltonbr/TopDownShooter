@@ -25,6 +25,8 @@ public class Gun : MonoBehaviour
     [Header("Effects")]
     public Transform shell;
     public Transform shellEjection;
+    public AudioClip shootAudio;
+    public AudioClip reloadAudio;
     MuzzleFlash muzzleFlash;
 
     float nextShotTime;
@@ -40,6 +42,8 @@ public class Gun : MonoBehaviour
 
     private void Start()
     {
+        Assert.IsNotNull(shootAudio, "Gun::Start - Can't find shootAudio");
+        Assert.IsNotNull(reloadAudio, "Gun::Start - Can't find reloadAudio");
         muzzleFlash = GetComponent<MuzzleFlash>();
         Assert.IsNotNull(muzzleFlash, "Gun::Start - Can't find MuzzleFlash Component!");
         shotsRemainingInBurst = burstCount;
@@ -94,6 +98,9 @@ public class Gun : MonoBehaviour
             this.transform.localPosition -= Vector3.forward * Random.Range(kickMinMax.x, kickMinMax.y);
             recoilAngle += Random.Range(recoilAngleMinMax.x, recoilAngleMinMax.y);
             recoilAngle = Mathf.Clamp(recoilAngle, 0, 30);
+
+            // shoot Audio
+            AudioManager.instance.PlaySound(shootAudio, this.transform.position);
         }
     }
 
@@ -102,6 +109,8 @@ public class Gun : MonoBehaviour
         if (!isReloading && projectilesRemainingInMag != projectilesPerMag)
         {
             StartCoroutine(AnimateReload());
+            // reload Audio
+            AudioManager.instance.PlaySound(reloadAudio, this.transform.position);
         }
     }
 

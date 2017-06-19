@@ -11,6 +11,7 @@ public class Enemy : LivingEntity
     State currentState;
 
     public GameObject deathEffect;
+    public static event System.Action OnDeathStatic;
 
 	NavMeshAgent pathfinder;
 	Transform target;
@@ -76,6 +77,10 @@ public class Enemy : LivingEntity
         // Instantiating death effect
         if (damage >= health)
         {
+            if (OnDeathStatic != null)
+            {
+                OnDeathStatic();
+            }
             AudioManager.instance.PlaySound("EnemyDeath", transform.position);
             Destroy(Instantiate(deathEffect, hitPoint, Quaternion.FromToRotation(Vector3.forward, hitDirection)) as GameObject, 2);
         }

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+using UnityEngine.Assertions;
 
 public class AudioManager : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class AudioManager : MonoBehaviour
 	public float sfxVolumePercent { get; private set; }
 	public float musicVolumePercent { get; private set; }
 
+    public AudioMixer mixer;
 	AudioSource sfx2DSource;
 	AudioSource[] musicSources;
 	int activeMusicSourceIndex;
@@ -33,6 +36,8 @@ public class AudioManager : MonoBehaviour
 			instance = this;
 			DontDestroyOnLoad (gameObject);
 
+            Assert.IsNotNull(mixer, "[AudioManager] Mixer not found!");
+
             // Subscribe  a delegate
             SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -44,11 +49,16 @@ public class AudioManager : MonoBehaviour
             {
 				GameObject newMusicSource = new GameObject ("Music source " + (i + 1));
 				musicSources [i] = newMusicSource.AddComponent<AudioSource> ();
+                musicSources [i].outputAudioMixerGroup = mixer.FindMatchingGroups("Music")[0];
+                musicSources [i].volume = 1f;
 				newMusicSource.transform.parent = transform;
-			}
+                //string _OutputMixer = "ExplosivesGroup";
+                //GetComponent<AudioSource>().outputAudioMixerGroup = mixer.FindMatchingGroups(_OutputMixer)[0];
+            }
 
 			GameObject newSfx2Dsource = new GameObject ("2D sfx source");
 			sfx2DSource = newSfx2Dsource.AddComponent<AudioSource> ();
+            sfx2DSource.outputAudioMixerGroup = mixer.FindMatchingGroups("FX")[0];
 			newSfx2Dsource.transform.parent = transform;
 
 			audioListener = FindObjectOfType<AudioListener> ().transform;
@@ -60,6 +70,7 @@ public class AudioManager : MonoBehaviour
 			masterVolumePercent = PlayerPrefs.GetFloat ("master vol", 1);
 			sfxVolumePercent = PlayerPrefs.GetFloat ("sfx vol", 1);
 			musicVolumePercent = PlayerPrefs.GetFloat ("music vol", 1);
+            PlayerPrefs.Save();
 		}
 	}
 

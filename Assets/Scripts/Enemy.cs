@@ -10,7 +10,7 @@ public class Enemy : LivingEntity
     public enum State {Idle, Chasing, Attacking};
     State currentState;
 
-    public GameObject deathEffect;
+    public ParticleSystem deathEffect;
     public static event System.Action OnDeathStatic;
 
 	NavMeshAgent pathfinder;
@@ -66,7 +66,11 @@ public class Enemy : LivingEntity
         }
         startingHealth = enemyHealth;
 
-        skinMaterial = GetComponent<Renderer>().sharedMaterial;
+        //Color deathFX = new Color(skinColor.r, skinColor.g, skinColor.b, 1);
+        ParticleSystem.MainModule deathEffectMain = deathEffect.main;
+        deathEffectMain.startColor = new Color (skinColor.r, skinColor.g, skinColor.b, 1f);
+          //  .startColor = deathFX;
+        skinMaterial = GetComponent<Renderer>().material;
         skinMaterial.color = skinColor;
         originalColor = skinMaterial.color;
     }

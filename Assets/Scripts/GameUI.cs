@@ -110,7 +110,7 @@ public class GameUI : MonoBehaviour {
     // UI Input
     public void StartNewGame()
     {
-        SceneManager.LoadScene("TestScene");
+        SceneManager.LoadScene("Game");
 //        gameOverUI.SetActive(false);
     }
 

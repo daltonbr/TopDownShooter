@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4325922257429010}
   - component: {fileID: 33481177578901328}
-  - component: {fileID: 65673862283157114}
   - component: {fileID: 23249299134777546}
   m_Layer: 15
   m_Name: Cube
@@ -55,7 +54,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4409032124239486}
   - component: {fileID: 33660143620354478}
-  - component: {fileID: 65134555210534680}
   - component: {fileID: 23558564320142584}
   m_Layer: 15
   m_Name: Cube
@@ -183,30 +181,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1893440080029116}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65134555210534680
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1893440080029116}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65673862283157114
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1200524836798226}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65894824168079236
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -232,3 +206,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 50
   recoverPercentage: 1
+  hpEffect: {fileID: 198070803120832060, guid: f485bc991ea1faa4aaeb105b9b4e07dc, type: 2}

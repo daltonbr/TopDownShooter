@@ -54,9 +54,9 @@ MonoBehaviour:
   devMode: 1
   waves:
   - infinite: 0
-    enemyCount: 10
+    enemyCount: 2
     timeBetweenSpawns: 3
-    moveSpeed: 1
+    moveSpeed: 0.5
     hitsToKillPlayer: 5
     enemyHealth: 1
     skinColor: {r: 0.07707905, g: 1, b: 0.04411763, a: 0}

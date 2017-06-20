@@ -112,6 +112,7 @@ public class GameUI : MonoBehaviour {
     {
         SceneManager.LoadScene("Game");
 //        gameOverUI.SetActive(false);
+		//SceneManager.LoadScene("BotScene");
     }
 
     public void ReturnToMainMenu()

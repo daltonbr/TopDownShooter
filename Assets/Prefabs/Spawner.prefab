@@ -55,8 +55,8 @@ MonoBehaviour:
   waves:
   - infinite: 0
     enemyCount: 10
-    timeBetweenSpawns: 0.7
-    moveSpeed: 2.2
+    timeBetweenSpawns: 3
+    moveSpeed: 1
     hitsToKillPlayer: 5
     enemyHealth: 1
     skinColor: {r: 0.07707905, g: 1, b: 0.04411763, a: 0}
@@ -90,3 +90,6 @@ MonoBehaviour:
     skinColor: {r: 0, g: 0, b: 0, a: 0.491}
   enemy: {fileID: 114230300785880278, guid: 330144030db6e48abb32af47c18650dd, type: 2}
   initialTileColor: {r: 1, g: 1, b: 1, a: 1}
+  hp: {fileID: 114092336365459906, guid: f574b64c9cc7c4fc8be5f40dc587e607, type: 2}
+  hpSpawnTime: 3
+  hpCapAmmount: 2

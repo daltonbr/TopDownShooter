@@ -43,5 +43,15 @@ public class LivingEntity : MonoBehaviour, IDamageable
         }
 		GameObject.Destroy(this.gameObject);
 	}
+
+	public void RefillHealth ()
+	{
+		health = startingHealth;
+	}
+
+	public bool hasFullHealth()
+	{
+		return (health == startingHealth);
+	}
 			
 }

@@ -13,31 +13,35 @@ public class GameUI : MonoBehaviour {
     public Text newWaveTitle;
     public Text newWaveEnemyCount;
     public Text scoreUI;
+    public Text gameOverScoreUI;
     public RectTransform healthBar;
 
     Spawner spawner;
     Player player;
 
-    void Awake ()
+    private void Start()
     {
-        spawner = FindObjectOfType<Spawner>();
-        spawner.OnNewWave += OnNewWave;
-        FindObjectOfType<Player>().OnDeath += OnGameOver;
-        Assert.IsNotNull(gameOverUI);
-        Assert.IsNotNull(fadePlane);
         player = FindObjectOfType<Player>();
         player.OnDeath += OnGameOver;
+    }
 
+    void Awake ()
+    {
+        Assert.IsNotNull(gameOverUI);
+        Assert.IsNotNull(fadePlane);
+        spawner = FindObjectOfType<Spawner>();
+        spawner.OnNewWave += OnNewWave;
 	}
 
     private void Update()
     {
         scoreUI.text = ScoreKeeper.score.ToString("D6");
+        float healthPercent = 0;
         if (player != null)
         {
-            float healthPercent = player.health / player.startingHealth;
-            healthBar.localScale = new Vector3(healthPercent, 1, 1);
+            healthPercent = player.health / player.startingHealth;
         }
+        healthBar.localScale = new Vector3(healthPercent, 1, 1);
     }
 
     void OnNewWave(int waveNumber)
@@ -55,8 +59,8 @@ public class GameUI : MonoBehaviour {
     {
         // Set mouse cursor on again
         Cursor.visible = true;
-        StartCoroutine(Fade(Color.clear, new Color(0, 0, 0, .95f), 1));
-        //gameOverScoreUI.text = scoreUI.text;
+        StartCoroutine(Fade(Color.clear, new Color(0, 0, 0, .90f), 1));
+        gameOverScoreUI.text = scoreUI.text;
         scoreUI.gameObject.SetActive(false);
         healthBar.transform.parent.gameObject.SetActive(false);
         gameOverUI.SetActive(true);     
@@ -84,7 +88,7 @@ public class GameUI : MonoBehaviour {
                 }
             }
 
-            newWaveBanner.anchoredPosition = Vector2.up * Mathf.Lerp(-270, 45, animatePercent);
+            newWaveBanner.anchoredPosition = Vector2.up * Mathf.Lerp(-330, 45, animatePercent);
             yield return null;
         }
     }
@@ -110,6 +114,10 @@ public class GameUI : MonoBehaviour {
 //        gameOverUI.SetActive(false);
     }
 
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 
 
 }

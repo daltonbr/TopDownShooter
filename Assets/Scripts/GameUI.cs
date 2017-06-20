@@ -106,8 +106,9 @@ public class GameUI : MonoBehaviour {
     // UI Input
     public void StartNewGame()
     {
-        SceneManager.LoadScene("TestScene");
-//        gameOverUI.SetActive(false);
+		//SceneManager.LoadScene("TestScene");
+		SceneManager.LoadScene("BotScene");
+        gameOverUI.SetActive(false);
     }
 
 

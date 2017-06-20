@@ -12,16 +12,23 @@ public class Spawner : MonoBehaviour {
     public Enemy enemy;
     public Color initialTileColor = Color.white;
 
-    LivingEntity playerEntity;
-    Transform playerT;
+	LivingEntity playerEntity;
+	Transform playerT;
+
+	[Header("Health Pack")]
+	public HealthPack hp;
+	public float hpSpawnTime = 3;	// in seconds
+	public int hpCapAmmount = 3;
+
+	private int hpAccumulated = 0;
+	private float hpNextSpawnTime;
 
     Wave currentWave;
     int currentWaveNumber;
 
     int enemiesRemainingToSpawn;
     int enemiesRemainingAlive;
-    float nextSpawnTime;
-
+	float enemyNextSpawnTime;
 
     MapGenerator map;
 
@@ -64,13 +71,23 @@ public class Spawner : MonoBehaviour {
             }
 
             // Spawning enemies
-            if ((enemiesRemainingToSpawn > 0 || currentWave.infinite) && Time.time > nextSpawnTime)
+            if ((enemiesRemainingToSpawn > 0 || currentWave.infinite) && Time.time > enemyNextSpawnTime)
             {
                 enemiesRemainingToSpawn--;
-                nextSpawnTime = Time.time + currentWave.timeBetweenSpawns;
+                enemyNextSpawnTime = Time.time + currentWave.timeBetweenSpawns;
 
                 StartCoroutine("SpawnEnemy");
             }
+
+			// Spawning HP's
+			if ((hpAccumulated < hpCapAmmount) && (hpNextSpawnTime < Time.time))
+			{
+				// Instantiate a HP
+				hpAccumulated++;
+				hpNextSpawnTime = Time.time + hpSpawnTime;
+				SpawnHP();
+			}
+
         }
 
         if(devMode)
@@ -87,6 +104,13 @@ public class Spawner : MonoBehaviour {
         }
 
     }
+
+	void SpawnHP()
+	{
+		Transform spawnTile = map.GetRandomOpenTile();
+		HealthPack spawnedHP = Instantiate(hp, spawnTile.position + Vector3.up, Quaternion.identity) as HealthPack;
+		spawnedHP.OnCollected += this.OnHPCollected;
+	}
 
     IEnumerator SpawnEnemy()
     {
@@ -115,6 +139,14 @@ public class Spawner : MonoBehaviour {
         spawnedEnemy.SetCharacteristics(currentWave.moveSpeed, currentWave.hitsToKillPlayer, currentWave.enemyHealth, currentWave.skinColor);
 
     }
+
+	void OnHPCollected()
+	{
+		if(hpAccumulated>0)	
+		{	
+			hpAccumulated--;
+		}
+	}
 
     void OnPlayerDeath()
     {
@@ -145,7 +177,7 @@ public class Spawner : MonoBehaviour {
         currentWaveNumber++;
         if (currentWaveNumber - 1 < waves.Length)
         {
-            print("Wave " + currentWaveNumber);
+            //print("Wave " + currentWaveNumber);
             currentWave = waves[currentWaveNumber - 1];
 
             enemiesRemainingToSpawn = currentWave.enemyCount;

@@ -27,6 +27,7 @@ public class ScoreKeeper : MonoBehaviour {
 
 	void OnPlayerDeath() {
 
+        score = 0;
 		Enemy.OnDeathStatic -= OnEnemyKilled;
 	}
 	

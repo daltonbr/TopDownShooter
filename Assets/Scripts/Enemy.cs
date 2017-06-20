@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Assertions;
 
 [RequireComponent (typeof(NavMeshAgent))]
 public class Enemy : LivingEntity
@@ -34,6 +35,9 @@ public class Enemy : LivingEntity
     {
         pathfinder = GetComponent<NavMeshAgent>();
 
+        skinMaterial = GetComponent<MeshRenderer>().material;
+        Assert.IsNotNull(skinMaterial, "[Enemy] SkinMaterial can't be null");
+        
         if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             hasTarget = true;
@@ -66,11 +70,17 @@ public class Enemy : LivingEntity
         }
         startingHealth = enemyHealth;
 
-        //Color deathFX = new Color(skinColor.r, skinColor.g, skinColor.b, 1);
-        ParticleSystem.MainModule deathEffectMain = deathEffect.main;
-        deathEffectMain.startColor = new Color (skinColor.r, skinColor.g, skinColor.b, 1f);
-          //  .startColor = deathFX;
-        skinMaterial = GetComponent<Renderer>().material;
+        // In the new ParticleSystem (5.5+) but startColor is not actually type of Color.
+        // The startColor variable is now a type of ParticleSystem.MinMaxGradient.
+
+        //Create Color 
+        ParticleSystem.MinMaxGradient color = new ParticleSystem.MinMaxGradient();
+        color.mode = ParticleSystemGradientMode.Color;
+        color.color = new Color(skinColor.r, skinColor.g, skinColor.b, 1f);
+
+        ParticleSystem.MainModule main = deathEffect.main;
+        main.startColor = color;
+               
         skinMaterial.color = skinColor;
         originalColor = skinMaterial.color;
     }
@@ -79,14 +89,14 @@ public class Enemy : LivingEntity
     {
         AudioManager.instance.PlaySound("Impact", transform.position);
         // Instantiating death effect
-        if (damage >= health)
+        if (damage >= health && !dead)
         {
             if (OnDeathStatic != null)
             {
                 OnDeathStatic();
             }
             AudioManager.instance.PlaySound("EnemyDeath", transform.position);
-            Destroy(Instantiate(deathEffect, hitPoint, Quaternion.FromToRotation(Vector3.forward, hitDirection)) as GameObject, 2);
+            Destroy(Instantiate(deathEffect.gameObject, hitPoint, Quaternion.FromToRotation(Vector3.forward, hitDirection)) as GameObject, deathEffect.main.startLifetime.constant);
         }
         base.TakeHit(damage, hitPoint, hitDirection);
     }

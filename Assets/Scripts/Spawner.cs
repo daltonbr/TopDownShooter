@@ -23,6 +23,14 @@ public class Spawner : MonoBehaviour {
 	private int hpAccumulated = 0;
 	private float hpNextSpawnTime;
 
+    [Header("Guns & Ammo")]
+    public GunPickup[] gunsPickupToRespawn;
+    public Vector2 gunsSpawnTime = new Vector2(3f, 6f);   // in seconds - x for min, y for max
+    public int gunsCapAmmount = 3;
+
+    private int gunsAccumulated = 0;
+    private float gunsNextSpawnTime;
+
     Wave currentWave;
     int currentWaveNumber;
 
@@ -88,6 +96,14 @@ public class Spawner : MonoBehaviour {
 				SpawnHP();
 			}
 
+            // Spawning Guns
+            if ((gunsAccumulated < gunsCapAmmount) && (gunsNextSpawnTime < Time.time))
+            {
+                gunsAccumulated++;
+                gunsNextSpawnTime = Time.time + Random.Range(gunsSpawnTime.x, gunsSpawnTime.y);
+                SpawnRandomGun();
+            }
+
         }
 
         if(devMode)
@@ -105,7 +121,15 @@ public class Spawner : MonoBehaviour {
 
     }
 
-	void SpawnHP()
+    void SpawnRandomGun()
+    {
+        Transform spawnTile = map.GetRandomOpenTile();
+        int index = Random.Range(0, gunsPickupToRespawn.Length);
+        GunPickup spawnedGun = Instantiate(gunsPickupToRespawn[index], spawnTile.position + Vector3.up, Quaternion.identity) as GunPickup;
+        spawnedGun.OnCollected += this.OnGunCollected;
+    }
+
+    void SpawnHP()
 	{
 		Transform spawnTile = map.GetRandomOpenTile();
 		HealthPack spawnedHP = Instantiate(hp, spawnTile.position + Vector3.up, Quaternion.identity) as HealthPack;
@@ -140,7 +164,15 @@ public class Spawner : MonoBehaviour {
 
     }
 
-	void OnHPCollected()
+    void OnGunCollected()
+    {
+        if (gunsAccumulated > 0)
+        {
+            gunsAccumulated--;
+        }
+    }
+
+    void OnHPCollected()
 	{
 		if(hpAccumulated>0)	
 		{	

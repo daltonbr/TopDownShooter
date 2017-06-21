@@ -93,3 +93,11 @@ MonoBehaviour:
   hp: {fileID: 114092336365459906, guid: f574b64c9cc7c4fc8be5f40dc587e607, type: 2}
   hpSpawnTime: 3
   hpCapAmmount: 2
+  gunsPickupToRespawn:
+  - {fileID: 114636228964975530, guid: 12be6547c7126f148a949df7418c5797, type: 2}
+  - {fileID: 114213040671133558, guid: ce1e0f91881377a43b41801d3c7118cb, type: 2}
+  - {fileID: 114263905127382348, guid: 7185cae51acb7994585391493fc0b8a3, type: 2}
+  - {fileID: 114871434587450952, guid: b0234802b184a9e45b316365b962a150, type: 2}
+  - {fileID: 114484460455762314, guid: 90c2335754c129b4a977e5599e89dd03, type: 2}
+  gunsSpawnTime: {x: 3, y: 6}
+  gunsCapAmmount: 3

@@ -205,5 +205,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 50
-  recoverPercentage: 1
-  hpEffect: {fileID: 198070803120832060, guid: f485bc991ea1faa4aaeb105b9b4e07dc, type: 2}
+  pickupEffect: {fileID: 198070803120832060, guid: f485bc991ea1faa4aaeb105b9b4e07dc,
+    type: 2}

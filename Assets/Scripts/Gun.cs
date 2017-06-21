@@ -21,7 +21,7 @@ public class Gun : MonoBehaviour
 
     [Header("Recoil")]
     public Vector2 kickMinMax = new Vector2(.05f, .2f);
-    public Vector2 recoilAngleMinMax = new Vector2(3f,5f);
+    public Vector2 recoilAngleMinMax = new Vector2(3f, 5f);
     public float recoilMoveSettleTime = .1f;
     public float recoilRotationSettleTime = .1f;
 
@@ -40,7 +40,7 @@ public class Gun : MonoBehaviour
     int shotsRemainingInBurst;
     public int projectilesRemainingInMag { get; private set; }
     bool isReloading;
-    
+
     Vector3 recoilSmoothDampVelocity;
     float recoilRotSmoothDampVelocity;
     float recoilAngle;
@@ -57,14 +57,10 @@ public class Gun : MonoBehaviour
         {
             Debug.LogError("Error! Gun.cs: burstCount must be a positive value (when in Burst mode)");
         }
-        
+
         projectilesRemainingInMag = projectilesPerMag;
         currentMagazines = initialMagazines;
-        if (gameUI)
-        {
-            gameUI.ClipCountUI.text = currentMagazines.ToString("D2");
-            gameUI.AmmoCountUI.text = projectilesRemainingInMag.ToString("D2");
-        }
+        tryUpdateAmmoUI();
     }
 
     private void LateUpdate()
@@ -100,7 +96,7 @@ public class Gun : MonoBehaviour
             {
                 if (projectilesRemainingInMag == 0) { break; }
                 projectilesRemainingInMag--;
-                if (gameUI) { gameUI.AmmoCountUI.text = projectilesRemainingInMag.ToString("D2"); }
+                tryUpdateAmmoUI();
                 nextShotTime = Time.time + msBetweenShots / 1000;
                 Projectile newProjectile = Instantiate(projectile, projectileSpawn[i].position, projectileSpawn[i].rotation) as Projectile;
                 newProjectile.SetSpeed(muzzleVelocity);
@@ -130,10 +126,9 @@ public class Gun : MonoBehaviour
         {
             // Update currentMagazines and UI's
             currentMagazines--;
-            if (gameUI) { gameUI.ClipCountUI.text = currentMagazines.ToString("D2"); }
-            Debug.Log("currentMagazines: " + currentMagazines);
-            
             StartCoroutine(AnimateReload());
+            tryUpdateAmmoUI();
+            
             // Reload Audio
             AudioManager.instance.PlaySound(reloadAudio, this.transform.position);
         }
@@ -142,6 +137,15 @@ public class Gun : MonoBehaviour
     public void registerGameUI(GameUI gameUI)
     {
         this.gameUI = gameUI;
+    }
+
+    private void tryUpdateAmmoUI()
+    {
+        if (gameUI)
+        {
+            gameUI.ClipCountUI.text = currentMagazines.ToString("D2");
+            gameUI.AmmoCountUI.text = projectilesRemainingInMag.ToString("D2");
+        }
     }
 
     public bool isOutOfBullets()

@@ -30,8 +30,7 @@ public class GunController : MonoBehaviour {
         }
         
 	}
-		
-
+	
     public void EquipGun(int weaponIndex)
     {
         EquipGun(allGuns[weaponIndex]);

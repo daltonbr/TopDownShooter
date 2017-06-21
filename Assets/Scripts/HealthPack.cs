@@ -3,30 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class HealthPack : MonoBehaviour {
+public class HealthPack : Pickup {
 
-	//public GameObject healthPack;
-	public float rotateSpeed = 50f;	// Degree per second
-	public float recoverPercentage = 1f;
-    public ParticleSystem hpEffect;
+    public override event System.Action OnCollected;
+    //public float recoverPercentage = 1f;
 
-	public event System.Action OnCollected;
-
-    public void Awake()
-    {
-        Assert.IsNotNull(hpEffect, "[HealthPack] hpEffect can't be null!");
-    }
-
-
-    void FixedUpdate () {
-		this.transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed);
-	}
-
-	void OnTriggerStay(Collider other) {
-		//Debug.Log("Healthpack in contact with " + other.name);
+    void OnTriggerStay(Collider other) {
+		
 		if (other.tag == "Player")
 		{
-//			Debug.Log("Healthpack entered by " + other.name);
+            Debug.Log("Pickup " + this.name + " entered by " + other.name);
 			Player player = other.GetComponent<Player>();
 			if (!player.hasFullHealth())
 			{
@@ -34,12 +20,12 @@ public class HealthPack : MonoBehaviour {
 				if (OnCollected != null)
 				{
                     AudioManager.instance.PlaySound("PickupHealth", this.transform.position);
-                    Destroy(Instantiate(hpEffect.gameObject, this.transform.position, Quaternion.Euler(new Vector3(90, 0, 0))), hpEffect.main.duration);
+                    Destroy(Instantiate(pickupEffect.gameObject, this.transform.position, Quaternion.Euler(new Vector3(90, 0, 0))), pickupEffect.main.duration);
 					OnCollected();
 				}
 				Destroy(this.gameObject);
 			}
-//			Debug.Log("Full Health");
+            //Debug.Log("Full Health");
 		}
 
 	}

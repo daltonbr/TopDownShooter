@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 54920094185632388}
   - component: {fileID: 114206832340054318}
   - component: {fileID: 114189940940293722}
-  - component: {fileID: 114352821962782378}
+  - component: {fileID: 114737420985109968}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 10
-  isInvencible: 1
+  isInvencible: 0
   moveSpeed: 5
   crosshairs: {fileID: 0}
   thresholdCursorDistanceSquared: 1
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0b94232570f4d6ea0472e31309b708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114352821962782378
+--- !u!114 &114737420985109968
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

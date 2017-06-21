@@ -3,7 +3,7 @@ using UnityEngine.Assertions;
 using System.Collections;
 
 [RequireComponent(typeof(PlayerController))]
-[RequireComponent(typeof(GunController))]
+//[RequireComponent(typeof(GunController))]
 public class Player : LivingEntity
 {
     public bool isInvencible = false;
@@ -12,7 +12,7 @@ public class Player : LivingEntity
     public float thresholdCursorDistanceSquared = 1f;
     Camera viewCamera;
     PlayerController controller;
-	GunController gunController;
+	public GunController gunController;
 
     //private int Xbox_One_Controller = 0;
     //private int PS4_Controller = 0;
@@ -25,7 +25,7 @@ public class Player : LivingEntity
     void Awake()
     {
         controller = GetComponent<PlayerController>();
-        gunController = GetComponent<GunController>();
+        gunController = GetComponent<GunController>() as GunController;
         viewCamera = Camera.main;
         FindObjectOfType<Spawner>().OnNewWave += OnNewWave;
     }

@@ -16,6 +16,10 @@ public class GameUI : MonoBehaviour {
     public Text gameOverScoreUI;
     public RectTransform healthBar;
 
+    [Header("Ammo")]
+    public Text ClipCountUI;
+    public Text AmmoCountUI;
+
     Spawner spawner;
     Player player;
 
@@ -42,6 +46,12 @@ public class GameUI : MonoBehaviour {
             healthPercent = player.health / player.startingHealth;
         }
         healthBar.localScale = new Vector3(healthPercent, 1, 1);
+
+    }
+
+    void OnGunShot()
+    {
+        Debug.Log("[GameUI] A gun was shot!");
     }
 
     void OnNewWave(int waveNumber)

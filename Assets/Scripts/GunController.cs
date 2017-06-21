@@ -8,11 +8,6 @@ public class GunController : MonoBehaviour {
 	public Gun[] allGuns;
 	Gun equippedGun;
 
-	void Start()
-	{
-
-
-	}
 
 	public void EquipGun(Gun gunToEquip)
 	{
@@ -22,6 +17,18 @@ public class GunController : MonoBehaviour {
 		}
 		equippedGun = Instantiate (gunToEquip, weaponHold.position, weaponHold.rotation) as Gun;
 		equippedGun.transform.parent = weaponHold;
+
+        GameObject canvas = GameObject.Find("Canvas");
+        if (canvas)
+        {
+            GameUI gameUI = canvas.GetComponent<GameUI>();
+            equippedGun.registerGameUI(gameUI);
+        }
+        else
+        {
+            Debug.Log("[GunController] Canvas / GameUI not found! Can't register gun in GameUI!");
+        }
+        
 	}
 		
 

@@ -5,8 +5,10 @@ using UnityEngine.Assertions;
 
 public class Gun : MonoBehaviour
 {
+
     public enum FireMode { Auto, Burst, Single };
     public FireMode fireMode;
+    private GameUI gameUI;
 
     public Transform[] projectileSpawn;
     public Projectile projectile;
@@ -30,12 +32,13 @@ public class Gun : MonoBehaviour
     public AudioClip reloadAudio;
     MuzzleFlash muzzleFlash;
 
+
     float nextShotTime;
-    int currentMagazines;
+    public int currentMagazines { get; private set; }
 
     bool triggerReleasedSinceLastShot;
     int shotsRemainingInBurst;
-    int projectilesRemainingInMag;
+    public int projectilesRemainingInMag { get; private set; }
     bool isReloading;
     
     Vector3 recoilSmoothDampVelocity;
@@ -44,6 +47,7 @@ public class Gun : MonoBehaviour
 
     private void Start()
     {
+        //Assert.IsNotNull(gameUI, "Gun::Start - Can't find gameUI");
         Assert.IsNotNull(shootAudio, "Gun::Start - Can't find shootAudio");
         Assert.IsNotNull(reloadAudio, "Gun::Start - Can't find reloadAudio");
         muzzleFlash = GetComponent<MuzzleFlash>();
@@ -53,8 +57,14 @@ public class Gun : MonoBehaviour
         {
             Debug.LogError("Error! Gun.cs: burstCount must be a positive value (when in Burst mode)");
         }
+        
         projectilesRemainingInMag = projectilesPerMag;
         currentMagazines = initialMagazines;
+        if (gameUI)
+        {
+            gameUI.ClipCountUI.text = currentMagazines.ToString("D2");
+            gameUI.AmmoCountUI.text = projectilesRemainingInMag.ToString("D2");
+        }
     }
 
     private void LateUpdate()
@@ -90,6 +100,7 @@ public class Gun : MonoBehaviour
             {
                 if (projectilesRemainingInMag == 0) { break; }
                 projectilesRemainingInMag--;
+                if (gameUI) { gameUI.AmmoCountUI.text = projectilesRemainingInMag.ToString("D2"); }
                 nextShotTime = Time.time + msBetweenShots / 1000;
                 Projectile newProjectile = Instantiate(projectile, projectileSpawn[i].position, projectileSpawn[i].rotation) as Projectile;
                 newProjectile.SetSpeed(muzzleVelocity);
@@ -117,13 +128,20 @@ public class Gun : MonoBehaviour
 
         if (!isReloading && projectilesRemainingInMag != projectilesPerMag)
         {
+            // Update currentMagazines and UI's
             currentMagazines--;
+            if (gameUI) { gameUI.ClipCountUI.text = currentMagazines.ToString("D2"); }
             Debug.Log("currentMagazines: " + currentMagazines);
             
             StartCoroutine(AnimateReload());
             // Reload Audio
             AudioManager.instance.PlaySound(reloadAudio, this.transform.position);
         }
+    }
+
+    public void registerGameUI(GameUI gameUI)
+    {
+        this.gameUI = gameUI;
     }
 
     public bool isOutOfBullets()

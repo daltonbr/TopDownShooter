@@ -15,6 +15,7 @@ public class Gun : MonoBehaviour
     public int burstCount = 3;
     public int projectilesPerMag;
     public float reloadTime = .3f;
+    public int initialMagazines = 2;
 
     [Header("Recoil")]
     public Vector2 kickMinMax = new Vector2(.05f, .2f);
@@ -30,12 +31,13 @@ public class Gun : MonoBehaviour
     MuzzleFlash muzzleFlash;
 
     float nextShotTime;
+    int currentMagazines;
 
     bool triggerReleasedSinceLastShot;
     int shotsRemainingInBurst;
     int projectilesRemainingInMag;
     bool isReloading;
-
+    
     Vector3 recoilSmoothDampVelocity;
     float recoilRotSmoothDampVelocity;
     float recoilAngle;
@@ -52,6 +54,7 @@ public class Gun : MonoBehaviour
             Debug.LogError("Error! Gun.cs: burstCount must be a positive value (when in Burst mode)");
         }
         projectilesRemainingInMag = projectilesPerMag;
+        currentMagazines = initialMagazines;
     }
 
     private void LateUpdate()
@@ -61,7 +64,7 @@ public class Gun : MonoBehaviour
         recoilAngle = Mathf.SmoothDamp(recoilAngle, 0, ref recoilRotSmoothDampVelocity, recoilRotationSettleTime);
         this.transform.localEulerAngles = Vector3.left * recoilAngle;
 
-        if (!isReloading && projectilesRemainingInMag == 0)
+        if (!isReloading && projectilesRemainingInMag == 0 && !isOutOfBullets())
         {
             Reload();
         }
@@ -69,7 +72,7 @@ public class Gun : MonoBehaviour
 
     void Shoot()
     {
-        if (!isReloading && Time.time > nextShotTime && projectilesRemainingInMag > 0)
+        if (!isReloading && Time.time > nextShotTime && projectilesRemainingInMag > 0 && !isOutOfBullets())
         {
             // Handling Fire Modes
             if (fireMode == FireMode.Burst)
@@ -106,12 +109,26 @@ public class Gun : MonoBehaviour
 
     public void Reload()
     {
+        if (isOutOfBullets())
+        {
+            Debug.Log("Out of bullets! Can't reload!");
+            return;
+        }
+
         if (!isReloading && projectilesRemainingInMag != projectilesPerMag)
         {
+            currentMagazines--;
+            Debug.Log("currentMagazines: " + currentMagazines);
+            
             StartCoroutine(AnimateReload());
-            // reload Audio
+            // Reload Audio
             AudioManager.instance.PlaySound(reloadAudio, this.transform.position);
         }
+    }
+
+    public bool isOutOfBullets()
+    {
+        return (currentMagazines == 0 && projectilesRemainingInMag == 0);
     }
 
     IEnumerator AnimateReload()

@@ -109,6 +109,14 @@ MonoBehaviour:
   - groupID: PlayerDeath
     group:
     - {fileID: 8300000, guid: 3d24370b259f24569a73f7f58aa703c2, type: 3}
+  - groupID: PickupHealth
+    group:
+    - {fileID: 8300000, guid: 9d65c02a18a437143851925083a7486e, type: 3}
+    - {fileID: 8300000, guid: 319aedecaaf22d74fa80d98cb23955a0, type: 3}
+  - groupID: PickupAmmo
+    group:
+    - {fileID: 8300000, guid: 77ae2b07da6cd3e409954c221e0d6447, type: 3}
+    - {fileID: 8300000, guid: 1e65b9fe71c51154eae0e2c30d510b76, type: 3}
 --- !u!114 &114684570305538758
 MonoBehaviour:
   m_ObjectHideFlags: 1

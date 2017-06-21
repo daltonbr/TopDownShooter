@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.Assertions;
 
 public class MusicManager : MonoBehaviour
 {
@@ -12,13 +13,16 @@ public class MusicManager : MonoBehaviour
 
 	void Awake()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-	}
+        //SceneManager.sceneLoaded += OnSceneLoaded;
+        OnSceneLoaded();
+        Assert.IsNotNull(mainTheme, "[MusicManager] mainTheme is null!");
+        Assert.IsNotNull(menuTheme, "[MusicManager] menuTheme is null!");
+    }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded() //Scene scene, LoadSceneMode mode
     {
-        //Debug.Log("[MusicManager] A scene name: " + scene.name + " was loaded!");
         string newSceneName = SceneManager.GetActiveScene().name;
+        //Debug.Log("[MusicManager] A scene name: " + scene.name + " was loaded!");
         if (newSceneName != sceneName)
         {
             sceneName = newSceneName;
@@ -32,15 +36,15 @@ public class MusicManager : MonoBehaviour
 
 		if (sceneName == "Menu")
         {
-			clipToPlay = menuTheme;
+            clipToPlay = menuTheme;
 		} else if (sceneName == "Game")
         {
-			clipToPlay = mainTheme;
+            clipToPlay = mainTheme;
 		}
 
 		if (clipToPlay != null)
         {
-			AudioManager.instance.PlayMusic (clipToPlay, 2);
+            AudioManager.instance.PlayMusic (clipToPlay, 2);
 			Invoke ("PlayMusic", clipToPlay.length);
 		}
 

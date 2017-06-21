@@ -9,9 +9,9 @@ public class AudioManager : MonoBehaviour
 
 	public enum AudioChannel {Master, Sfx, Music};
 
-	public float masterVolumePercent { get; private set; }
-	public float sfxVolumePercent { get; private set; }
-	public float musicVolumePercent { get; private set; }
+    public float masterVolumePercent { get; private set; }
+    public float sfxVolumePercent { get; private set; }
+    public float musicVolumePercent { get; private set; }
 
     public AudioMixer mixer;
 	AudioSource sfx2DSource;
@@ -47,16 +47,15 @@ public class AudioManager : MonoBehaviour
             musicSources = new AudioSource[2];
 			for (int i = 0; i < 2; i++)
             {
-				GameObject newMusicSource = new GameObject ("Music source " + (i + 1));
+				GameObject newMusicSource = new GameObject ("MusicSource" + (i + 1));
 				musicSources [i] = newMusicSource.AddComponent<AudioSource> ();
                 musicSources [i].outputAudioMixerGroup = mixer.FindMatchingGroups("Music")[0];
+                //TODO: why doesn't this is setted?
                 musicSources [i].volume = 1f;
 				newMusicSource.transform.parent = transform;
-                //string _OutputMixer = "ExplosivesGroup";
-                //GetComponent<AudioSource>().outputAudioMixerGroup = mixer.FindMatchingGroups(_OutputMixer)[0];
             }
 
-			GameObject newSfx2Dsource = new GameObject ("2D sfx source");
+			GameObject newSfx2Dsource = new GameObject ("2DSfxSource");
 			sfx2DSource = newSfx2Dsource.AddComponent<AudioSource> ();
             sfx2DSource.outputAudioMixerGroup = mixer.FindMatchingGroups("FX")[0];
 			newSfx2Dsource.transform.parent = transform;
@@ -67,11 +66,19 @@ public class AudioManager : MonoBehaviour
 				playerT = FindObjectOfType<Player> ().transform;
 			}
 
-			masterVolumePercent = PlayerPrefs.GetFloat ("master vol", 1);
-			sfxVolumePercent = PlayerPrefs.GetFloat ("sfx vol", 1);
-			musicVolumePercent = PlayerPrefs.GetFloat ("music vol", 1);
-            PlayerPrefs.Save();
-		}
+            masterVolumePercent = PlayerPrefs.GetFloat("master vol", 1.0f);
+            sfxVolumePercent = PlayerPrefs.GetFloat("sfx vol", 1.0f);
+            musicVolumePercent = PlayerPrefs.GetFloat("music vol", 1.0f);
+
+            //masterVolumePercent = 1f;
+            //sfxVolumePercent = 1f;
+            //musicVolumePercent = 1f;
+
+            //Debug.Log("musicVolumePercent: " + musicVolumePercent);
+            //musicSources[0].volume = 1f;
+            //musicSources[1].volume = 0.9f;
+            //Debug.Log("volume: " + musicSources[1].volume);
+        }
 	}
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -129,7 +136,8 @@ public class AudioManager : MonoBehaviour
 
 	public void PlaySound(AudioClip clip, Vector3 pos)
     {
-		if (clip != null) {
+		if (clip != null)
+        {
 			AudioSource.PlayClipAtPoint (clip, pos, sfxVolumePercent * masterVolumePercent);
 		}
 	}

@@ -127,7 +127,7 @@ public class Gun : MonoBehaviour
             // Update currentMagazines and UI's
             currentMagazines--;
             StartCoroutine(AnimateReload());
-            tryUpdateAmmoUI();
+            
             
             // Reload Audio
             AudioManager.instance.PlaySound(reloadAudio, this.transform.position);
@@ -176,6 +176,7 @@ public class Gun : MonoBehaviour
         isReloading = false;
         // Reloading
         projectilesRemainingInMag = projectilesPerMag;
+        tryUpdateAmmoUI();
     }
 
     public void Aim(Vector3 aimPoint)

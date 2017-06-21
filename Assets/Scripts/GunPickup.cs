@@ -20,7 +20,7 @@ public class GunPickup : Pickup
 
         if (other.tag == "Player")
         {
-            Debug.Log(this.name + " entered by " + other.name);
+            //Debug.Log(this.name + " entered by " + other.name);
             
             Player playerScript = other.GetComponent<Player>();
             if (playerScript)

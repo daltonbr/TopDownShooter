@@ -12,7 +12,7 @@ public class HealthPack : Pickup {
 		
 		if (other.tag == "Player")
 		{
-            Debug.Log("Pickup " + this.name + " entered by " + other.name);
+            //Debug.Log("Pickup " + this.name + " entered by " + other.name);
 			Player player = other.GetComponent<Player>();
 			if (!player.hasFullHealth())
 			{

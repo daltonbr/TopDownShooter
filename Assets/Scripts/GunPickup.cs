@@ -40,6 +40,11 @@ public class GunPickup : Pickup
 
             AudioManager.instance.PlaySound("PickupGun", this.transform.position);
             Destroy(Instantiate(pickupEffect.gameObject, this.transform.position, Quaternion.identity), pickupEffect.main.duration);
+            
+            if (OnCollected != null)
+            {
+                OnCollected();
+            }
             Destroy(this.gameObject);
         }
 

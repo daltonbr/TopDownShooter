@@ -20,25 +20,4 @@ public class Pickup : MonoBehaviour {
         this.transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed);
     }
 
-    //void OnTriggerStay(Collider other)
-    //{
-    //    if (other.tag == "Player")
-    //    {
-    
-    //        Player player = other.GetComponent<Player>();
-    //        if (!player.hasFullHealth())
-    //        {
-    //            player.RefillHealth();
-    //            if (OnCollected != null)
-    //            {
-    //                AudioManager.instance.PlaySound("PickupHealth", this.transform.position);
-    //                Destroy(Instantiate(hpEffect.gameObject, this.transform.position, Quaternion.Euler(new Vector3(90, 0, 0))), hpEffect.main.duration);
-    //                OnCollected();
-    //            }
-    //            Destroy(this.gameObject);
-    //        }
-    //        //			Debug.Log("Full Health");
-    //    }
-
-    //}
 }

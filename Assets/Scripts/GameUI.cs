@@ -16,17 +16,21 @@ public class GameUI : MonoBehaviour {
     public Text gameOverScoreUI;
     public RectTransform healthBar;
 
-    [Header("Ammo")]
+    [Header("Resources (Ammo & HP)")]
     public Text ClipCountUI;
     public Text AmmoCountUI;
+    public Text HPCountUI;
 
     Spawner spawner;
     Player player;
+
+    public event System.Action OnChangeHPValue;
 
     private void Start()
     {
         player = FindObjectOfType<Player>();
         player.OnDeath += OnGameOver;
+        player.OnChangeHPValue += this.OnUpdateHPValue;
     }
 
     void Awake ()
@@ -35,7 +39,8 @@ public class GameUI : MonoBehaviour {
         Assert.IsNotNull(fadePlane);
         spawner = FindObjectOfType<Spawner>();
         spawner.OnNewWave += OnNewWave;
-	}
+
+    }
 
     private void Update()
     {
@@ -52,6 +57,11 @@ public class GameUI : MonoBehaviour {
     void OnGunShot()
     {
         Debug.Log("[GameUI] A gun was shot!");
+    }
+
+    void OnUpdateHPValue(int ammountToSetHP)
+    {
+        HPCountUI.text = ammountToSetHP.ToString("D2");
     }
 
     void OnNewWave(int waveNumber)

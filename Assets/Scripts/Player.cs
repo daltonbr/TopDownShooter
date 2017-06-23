@@ -3,7 +3,7 @@ using UnityEngine.Assertions;
 using System.Collections;
 
 [RequireComponent(typeof(PlayerController))]
-//[RequireComponent(typeof(GunController))]
+[RequireComponent(typeof(GunController))]
 public class Player : LivingEntity
 {
     public bool isInvencible = false;
@@ -13,6 +13,10 @@ public class Player : LivingEntity
     Camera viewCamera;
     PlayerController controller;
 	public GunController gunController;
+    public int startingHealthPacks = 2;
+    public int currentHealthPacks { get; private set; }
+
+    public event System.Action<int> OnChangeHPValue;
 
     //private int Xbox_One_Controller = 0;
     //private int PS4_Controller = 0;
@@ -20,6 +24,7 @@ public class Player : LivingEntity
     public override void Start()
 	{
 		base.Start();
+        if (OnChangeHPValue != null) { OnChangeHPValue(currentHealthPacks); }
     }
 
     void Awake()
@@ -28,6 +33,8 @@ public class Player : LivingEntity
         gunController = GetComponent<GunController>() as GunController;
         viewCamera = Camera.main;
         FindObjectOfType<Spawner>().OnNewWave += OnNewWave;
+        currentHealthPacks = startingHealthPacks;
+        
     }
 
     public override void TakeDamage(float damage)
@@ -40,6 +47,32 @@ public class Player : LivingEntity
         if (health <= 0 && !dead)
         {
             Die();
+        }
+    }
+
+    public void AddHealthPack()
+    {
+        this.currentHealthPacks++;
+        if (OnChangeHPValue != null) { OnChangeHPValue(currentHealthPacks); }
+    }
+
+    public void UseHealthPack()
+    {
+        if (currentHealthPacks > 0)
+        {
+            if (startingHealth != health)
+            {
+                currentHealthPacks--;
+                if (OnChangeHPValue != null) { OnChangeHPValue(currentHealthPacks); }
+                RefillHealth();
+            } else
+            {
+                Debug.Log("Health already full!");
+            }
+            
+        } else
+        {
+            Debug.Log("No more HP's left!");
         }
     }
 
@@ -95,9 +128,15 @@ public class Player : LivingEntity
             gunController.Reload();
         }
 
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire3"))
+        {
+            Debug.Log("Trying to use HP");
+            this.UseHealthPack();
+        }
+
         if (transform.position.y < -10)
         {
-            TakeDamage(health);
+            this.TakeDamage(health);
         }
 
         // Xbox1 and PS4 controller detection

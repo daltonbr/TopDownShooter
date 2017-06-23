@@ -15,7 +15,9 @@ public class Player : LivingEntity
 	public GunController gunController;
     public int startingHealthPacks = 2;
     public int currentHealthPacks { get; private set; }
-    protected Context context;
+
+    [SerializeField]
+    Context context;
 
     public event System.Action<int> OnChangeHPValue;
 
@@ -35,8 +37,9 @@ public class Player : LivingEntity
         viewCamera = Camera.main;
         FindObjectOfType<Spawner>().OnNewWave += OnNewWave;
         currentHealthPacks = startingHealthPacks;
-        
-        context.SetPlayer(this);
+
+        this.context = (Context)this.gameObject.AddComponent<Context>();
+        this.context.SetPlayer(this);
     }
 
     public Context GetContext()

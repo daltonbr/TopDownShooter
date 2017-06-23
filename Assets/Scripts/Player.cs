@@ -15,6 +15,7 @@ public class Player : LivingEntity
 	public GunController gunController;
     public int startingHealthPacks = 2;
     public int currentHealthPacks { get; private set; }
+    protected Context context;
 
     public event System.Action<int> OnChangeHPValue;
 
@@ -35,6 +36,12 @@ public class Player : LivingEntity
         FindObjectOfType<Spawner>().OnNewWave += OnNewWave;
         currentHealthPacks = startingHealthPacks;
         
+        context.SetPlayer(this);
+    }
+
+    public Context GetContext()
+    {
+        return context;
     }
 
     public override void TakeDamage(float damage)

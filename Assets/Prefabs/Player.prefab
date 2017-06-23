@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114206832340054318}
   - component: {fileID: 114189940940293722}
   - component: {fileID: 114737420985109968}
+  - component: {fileID: 114589680464609028}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -145,6 +146,8 @@ MonoBehaviour:
   moveSpeed: 5
   crosshairs: {fileID: 0}
   thresholdCursorDistanceSquared: 1
+  gunController: {fileID: 0}
+  startingHealthPacks: 2
 --- !u!114 &114206832340054318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,6 +159,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0b94232570f4d6ea0472e31309b708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114589680464609028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1537194078531484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6434c3ed374da148a8d2668d57e0d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  context: {fileID: 0}
+  scanner: {fileID: 0}
+  scanTimeIntervalInSecs: 1
+  enemyScanRange: 10
+  powerupScanRange: 10
+  samplingDensity: 1.5
+  samplingRange: 12
 --- !u!114 &114737420985109968
 MonoBehaviour:
   m_ObjectHideFlags: 1

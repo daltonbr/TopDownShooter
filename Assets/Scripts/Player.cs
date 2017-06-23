@@ -16,9 +16,6 @@ public class Player : LivingEntity
     public int startingHealthPacks = 2;
     public int currentHealthPacks { get; private set; }
 
-    [SerializeField]
-    Context context;
-
     public event System.Action<int> OnChangeHPValue;
 
     //private int Xbox_One_Controller = 0;
@@ -38,13 +35,7 @@ public class Player : LivingEntity
         FindObjectOfType<Spawner>().OnNewWave += OnNewWave;
         currentHealthPacks = startingHealthPacks;
 
-        this.context = (Context)this.gameObject.AddComponent<Context>();
-        this.context.SetPlayer(this);
-    }
-
-    public Context GetContext()
-    {
-        return context;
+        
     }
 
     public override void TakeDamage(float damage)
@@ -118,7 +109,6 @@ public class Player : LivingEntity
             {
                 gunController.Aim(point);
             }
-            
             
 		}
 

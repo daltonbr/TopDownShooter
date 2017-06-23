@@ -3,43 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class Context : MonoBehaviour {
-
-    //public Scanner scanner;
-
-    //public Context(Player entity)
-    //{
-    //    this.player = entity;
-    //    this.enemies = new List<Enemy>();
-    //    this.sampledPositions = new List<Vector3>();
-    //    this.powerups = new List<Pickup>();
-    //}
-
-    void OnAwake()
+public class Context
+{
+    public Context(Player entity)
     {
-        //Assert.IsNotNull(player1, "[Context] player1 is not null!");
-
-        //if (instance != null)
-        //{
-        //    Destroy(gameObject);
-        //}
-        //else
-        //{
-        //    instance = this;
-        //    DontDestroyOnLoad(gameObject);
-        //}
-
-        
-        //scanner = this.gameObject.GetComponent<Scanner>();
-        //Assert.IsNotNull(scanner, "[Context] scanner is null!");
-        //instance = new Context(player1);
-        
-    }
-
-    void OnStart()
-    {
-       // Context.instance.player = player1;
-        //Debug.Log("Player in context: " + this.player.name);
+        this.player = entity;
+        this.enemies = new List<Enemy>();
+        this.sampledPositions = new List<Vector3>();
+        this.pickups = new List<Pickup>();
     }
 
     public void SetPlayer (Player player)
@@ -51,7 +22,7 @@ public class Context : MonoBehaviour {
 
     public List<Enemy> enemies { get; private set; }
 
-    public List<Pickup> powerups { get; private set; }
+    public List<Pickup> pickups { get; private set; }
 
     public List<Vector3> sampledPositions { get; private set; }
 }

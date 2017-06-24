@@ -7,6 +7,7 @@ using System.Collections;
 public class Player : LivingEntity
 {
     public bool isInvencible = false;
+    public bool isAIControlled = true;
     public float moveSpeed = 5f;
     public Crosshairs crosshairs;
     public float thresholdCursorDistanceSquared = 1f;
@@ -17,6 +18,8 @@ public class Player : LivingEntity
     public int currentHealthPacks { get; private set; }
 
     public event System.Action<int> OnChangeHPValue;
+
+    private float dyingYValue = -10f;
 
     //private int Xbox_One_Controller = 0;
     //private int PS4_Controller = 0;
@@ -33,14 +36,12 @@ public class Player : LivingEntity
         gunController = GetComponent<GunController>() as GunController;
         viewCamera = Camera.main;
         FindObjectOfType<Spawner>().OnNewWave += OnNewWave;
-        currentHealthPacks = startingHealthPacks;
-
-        
+        currentHealthPacks = startingHealthPacks;              
     }
 
     public override void TakeDamage(float damage)
     {
-        if (!isInvencible)
+        if (!isInvencible || this.transform.position.y < dyingYValue)
         {
             health -= damage;
         }
@@ -86,98 +87,109 @@ public class Player : LivingEntity
 
     void Update()
     {
-		// Movement Input
-        Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        Vector3 moveVelocity = moveInput.normalized * moveSpeed;
-        controller.Move(moveVelocity);
-
-		// Look Input
-		Assert.IsNotNull(viewCamera,"Can't find a main camera");
-		Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
-		Plane groundPlane = new Plane(Vector3.up, Vector3.up * gunController.GunHeight);
-		float rayDistance;
-
-		if (groundPlane.Raycast(ray, out rayDistance))
-		{
-			Vector3 point = ray.GetPoint(rayDistance);
-			//Debug.DrawLine(ray.origin, point, Color.red);
-			controller.LookAt(point);
-            crosshairs.transform.position = point;
-            crosshairs.DetectTargets(ray);
-            // Tweak for the gun not twist when following the cursor (sqrMagnitude is faster)
-            if ((new Vector2(point.x, point.z) - new Vector2(transform.position.x, transform.position.z)).sqrMagnitude > thresholdCursorDistanceSquared)
-            {
-                gunController.Aim(point);
-            }
-            
-		}
-
-    	// Weapon Input
-        // Mouse pressed
-		if (Input.GetMouseButton(0) || Input.GetButtonDown("Fire1"))
-		{
-			gunController.OnTriggerHold();
-		}
-        // Mouse release
-        if (Input.GetMouseButtonUp(0) || Input.GetButtonUp("Fire1"))
-        {
-            gunController.OnTriggerRelease();
-        }
-        if (Input.GetKeyDown(KeyCode.R)|| Input.GetButton("Fire2"))
-        {
-            gunController.Reload();
-        }
-
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire3"))
-        {
-            Debug.Log("Trying to use HP");
-            this.UseHealthPack();
-        }
-
-        if (transform.position.y < -10)
+        //TODO: [optmize] remove this check for Update
+        /* kill the player when he is falling down */
+        if (transform.position.y < dyingYValue)
         {
             this.TakeDamage(health);
         }
 
-        // Xbox1 and PS4 controller detection
+        // Movement Input
+        Vector3 moveInput;
+        Vector3 moveVelocity;
 
-        //string[] names = Input.GetJoystickNames();
-        //for (int x = 0; x < names.Length; x++)
-        //{
-        //    print(names[x].Length);
-        //    if (names[x].Length == 19)
-        //    {
-        //        print("PS4 CONTROLLER IS CONNECTED");
-        //        PS4_Controller = 1;
-        //        Xbox_One_Controller = 0;
-        //    }
-        //    if (names[x].Length == 33)
-        //    {
-        //        print("XBOX ONE CONTROLLER IS CONNECTED");
-        //        //set a controller bool to true
-        //        PS4_Controller = 0;
-        //        Xbox_One_Controller = 1;
+        /* Not AI controlled ? */
+        if (isAIControlled)
+        {
+            controller.MoveAgent();
+        } else
+        {
+            moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            moveVelocity = moveInput.normalized * moveSpeed;
+            controller.Move(moveVelocity);
 
-        //    }
-        //}
+            // Look Input
+            Assert.IsNotNull(viewCamera, "Can't find a main camera");
+            Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
+            Plane groundPlane = new Plane(Vector3.up, Vector3.up * gunController.GunHeight);
+            float rayDistance;
+
+            if (groundPlane.Raycast(ray, out rayDistance))
+            {
+                Vector3 point = ray.GetPoint(rayDistance);
+                //Debug.DrawLine(ray.origin, point, Color.red);
+                controller.LookAt(point);
+                crosshairs.transform.position = point;
+                crosshairs.DetectTargets(ray);
+                // Tweak for the gun not twist when following the cursor (sqrMagnitude is faster)
+                if ((new Vector2(point.x, point.z) - new Vector2(transform.position.x, transform.position.z)).sqrMagnitude > thresholdCursorDistanceSquared)
+                {
+                    gunController.Aim(point);
+                }
+            }
+            
+            /* Human Inputs */ 
+            // Mouse pressed
+            if (Input.GetMouseButton(0) || Input.GetButtonDown("Fire1"))
+            {
+                gunController.OnTriggerHold();
+            }
+            // Mouse released
+            if (Input.GetMouseButtonUp(0) || Input.GetButtonUp("Fire1"))
+            {
+                gunController.OnTriggerRelease();
+            }
+            // Reload
+            if (Input.GetKeyDown(KeyCode.R) || Input.GetButton("Fire2"))
+            {
+                gunController.Reload();
+            }
+            // HP
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire3"))
+            {
+                Debug.Log("Trying to use HP");
+                this.UseHealthPack();
+            }
+
+            // Xbox1 and PS4 controller detection
+
+            //string[] names = Input.GetJoystickNames();
+            //for (int x = 0; x < names.Length; x++)
+            //{
+            //    print(names[x].Length);
+            //    if (names[x].Length == 19)
+            //    {
+            //        print("PS4 CONTROLLER IS CONNECTED");
+            //        PS4_Controller = 1;
+            //        Xbox_One_Controller = 0;
+            //    }
+            //    if (names[x].Length == 33)
+            //    {
+            //        print("XBOX ONE CONTROLLER IS CONNECTED");
+            //        //set a controller bool to true
+            //        PS4_Controller = 0;
+            //        Xbox_One_Controller = 1;
+            //    }
+            //}
 
 
-        //if (Xbox_One_Controller == 1)
-        //{
-        //    //do something
-        //    Debug.Log("Xbox");
-        //}
-        //else if (PS4_Controller == 1)
-        //{
-        //    //do something
-        //    Debug.Log("PS4");
-        //}
-        //else
-        //{
-        //    Debug.Log("No Controller");
-        //    // there is no controllers
-        //}
+            //if (Xbox_One_Controller == 1)
+            //{
+            //    //do something
+            //    Debug.Log("Xbox");
+            //}
+            //else if (PS4_Controller == 1)
+            //{
+            //    //do something
+            //    Debug.Log("PS4");
+            //}
+            //else
+            //{
+            //    Debug.Log("No Controller");
+            //    // there is no controllers
+            //}
 
+        }
 
     }
 

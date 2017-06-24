@@ -6,8 +6,11 @@ using UnityEngine.Assertions;
 public class AIManager : MonoBehaviour
 {
     public Player player;
+    private PlayerController playerController;
     public Context context;
     public Scanner scanner;
+
+    public MoveToPickup moveToPickup;
     
     [Header("Scanner")]
     public float scanTimeIntervalInSecs = 1f;
@@ -33,13 +36,18 @@ public class AIManager : MonoBehaviour
 
     void Awake()
     {
-        player = this.gameObject.GetComponent<Player>();
+        this.player = this.gameObject.GetComponent<Player>();
         this.context = new Context(player);
         this.scanner = this.gameObject.AddComponent<Scanner>();
+        this.moveToPickup = new MoveToPickup(); //this.gameObject.AddComponent<MoveToPickup>();
+        this.playerController = player.GetComponent<PlayerController>();
 
         Assert.IsNotNull(player, "[AIManager] player is null!");
         Assert.IsNotNull(context, "[AIManager] context is null!");
         Assert.IsNotNull(scanner, "[AIManager] scanner is null!");
+        Assert.IsNotNull(moveToPickup, "[AIManager] moveToPickup is null!");
+        Assert.IsNotNull(playerController, "[AIManager] playerController is null!");
+
         debugPrefabHolder = new GameObject();
         debugPrefabHolder.name = "debugPrefabHolder";
     }
@@ -68,8 +76,22 @@ public class AIManager : MonoBehaviour
     {
         if (HasEnemies())
         {
-            Debug.Log("Has Enemies");
-        } else
+            //Debug.Log("Has Enemies");
+            /* MoveToPickup */
+            float score = moveToPickup.Run(context);
+            //Debug.Log("MoveToPickup score: " + score);
+            if (score > 0)
+            {
+                Vector3 desiredPosition = (context.GetNearestPickup().transform.position);
+                if (desiredPosition != null)
+                {
+                    playerController.desiredPositionByAI = desiredPosition;
+                }
+                return;
+            }
+            /* Tactical Move */
+        }
+        else
         {
             Debug.Log("[Idling] No enemy scanned");
         }

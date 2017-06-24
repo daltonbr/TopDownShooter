@@ -803,6 +803,7 @@ MonoBehaviour:
   burstCount: 3
   projectilesPerMag: 50
   reloadTime: 0.6
+  initialMagazines: 2
   kickMinMax: {x: 0.05, y: 0.2}
   recoilAngleMinMax: {x: 3, y: 5}
   recoilMoveSettleTime: 0.1

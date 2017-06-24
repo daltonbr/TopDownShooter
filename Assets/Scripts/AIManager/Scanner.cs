@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Assertions;
 
 public class Scanner : MonoBehaviour {
@@ -19,7 +20,7 @@ public class Scanner : MonoBehaviour {
             Enemy enemy = colliders[i].GetComponent<Enemy>();
             context.enemies.Add(enemy);
         }
-        Debug.Log("Enemies.Lenght: " + context.enemies.Count);
+        //Debug.Log("Enemies.Lenght: " + context.enemies.Count);
     }
 
     public void ScanForPickups(Context context, float powerupScanRange)
@@ -36,12 +37,33 @@ public class Scanner : MonoBehaviour {
             Pickup pickup = colliders[i].GetComponent<Pickup>();
             context.pickups.Add(pickup);
         }
-        Debug.Log("pickups.Lenght: " + context.pickups.Count);
+        //Debug.Log("pickups.Lenght: " + context.pickups.Count);
     }
 
-    public void ScanForPositions(Context context)
+    public void ScanForPositions(Context context, float samplingRange, float samplingDensity)
     {
-        Debug.Log("ScanForPositions not implemented yet");
+        Player player = context.player;
+        List<Vector3> samplePositions = context.sampledPositions;
+
+        context.sampledPositions.Clear();
+
+        float halfSamplingRange = samplingRange * 0.5f;
+        Vector3 pos = player.transform.position;
+
+        for (var x = -halfSamplingRange; x < halfSamplingRange; x += samplingDensity)
+        {
+            for (var z = -halfSamplingRange; z < halfSamplingRange; z += samplingDensity)
+            {
+                Vector3 p = new Vector3(pos.x + x, 0f, pos.z + z);
+
+                //context.sampledPositions.Add(p);
+                NavMeshHit hit;
+                if (NavMesh.SamplePosition(p, out hit, samplingDensity * 0.5f, NavMesh.AllAreas))
+                {
+                    context.sampledPositions.Add(hit.position);
+                }
+            }
+        }
     }
 }
 

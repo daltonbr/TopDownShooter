@@ -171,11 +171,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  context: {fileID: 0}
   scanner: {fileID: 0}
+  debugPrefab: {fileID: 1868664575650442, guid: 6ea1298bb0dccca47947fab31dc4c932,
+    type: 2}
   scanTimeIntervalInSecs: 1
   enemyScanRange: 10
-  powerupScanRange: 10
+  pickupScanRange: 10
   samplingDensity: 1.5
   samplingRange: 12
 --- !u!114 &114737420985109968

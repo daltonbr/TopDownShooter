@@ -28,6 +28,9 @@ public class AIManager : MonoBehaviour
     //[Range(0f, 1f)]
     //public float transparency = 0.25f;
 
+    GameObject debugPrefabHolder;
+    
+
     void Awake()
     {
         player = this.gameObject.GetComponent<Player>();
@@ -37,6 +40,8 @@ public class AIManager : MonoBehaviour
         Assert.IsNotNull(player, "[AIManager] player is null!");
         Assert.IsNotNull(context, "[AIManager] context is null!");
         Assert.IsNotNull(scanner, "[AIManager] scanner is null!");
+        debugPrefabHolder = new GameObject();
+        debugPrefabHolder.name = "debugPrefabHolder";
     }
 
     void Start()
@@ -58,9 +63,10 @@ public class AIManager : MonoBehaviour
 
     public void DebugPositions(List<Vector3> positions)
     {
+        //TODO: [Optimization] make a pool with these prefabs   
         foreach (var v in positions)
         {
-            Destroy(Instantiate(debugPrefab, v, Quaternion.identity), 1f) ;
+            Destroy(Instantiate(debugPrefab, v, Quaternion.identity, debugPrefabHolder.gameObject.transform), 1f) ;
         }
     }
 

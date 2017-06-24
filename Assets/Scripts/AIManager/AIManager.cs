@@ -47,6 +47,7 @@ public class AIManager : MonoBehaviour
     void Start()
     {
         InvokeRepeating("Scan", scanTimeIntervalInSecs, scanTimeIntervalInSecs);
+        //InvokeRepeating("TacticalMovement", scanTimeIntervalInSecs, scanTimeIntervalInSecs);
     }
 
     private void Scan()
@@ -59,6 +60,25 @@ public class AIManager : MonoBehaviour
         {
             DebugPositions(this.context.sampledPositions);
         }
+
+        TacticalMovement();
+    }
+
+    private void TacticalMovement()
+    {
+        if (HasEnemies())
+        {
+            Debug.Log("Has Enemies");
+        } else
+        {
+            Debug.Log("[Idling] No enemy scanned");
+        }
+    }
+
+  
+    public bool HasEnemies()
+    {
+        return (context.enemies.Count != 0);
     }
 
     public void DebugPositions(List<Vector3> positions)

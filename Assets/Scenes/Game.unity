@@ -15014,7 +15014,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4060152206882456, guid: 4183a08f4e85ef0438587b47ee806280, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -6.32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4060152206882456, guid: 4183a08f4e85ef0438587b47ee806280, type: 2}
       propertyPath: m_LocalPosition.y
@@ -15022,7 +15022,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4060152206882456, guid: 4183a08f4e85ef0438587b47ee806280, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.51
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4060152206882456, guid: 4183a08f4e85ef0438587b47ee806280, type: 2}
       propertyPath: m_LocalRotation.x
@@ -15044,16 +15044,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 114589680464609028, guid: 4183a08f4e85ef0438587b47ee806280,
-        type: 2}
-      propertyPath: debugScoreText
-      value: 
-      objectReference: {fileID: 739940275}
     - target: {fileID: 114189940940293722, guid: 4183a08f4e85ef0438587b47ee806280,
         type: 2}
       propertyPath: crosshairs
       value: 
       objectReference: {fileID: 931815999}
+    - target: {fileID: 114589680464609028, guid: 4183a08f4e85ef0438587b47ee806280,
+        type: 2}
+      propertyPath: debugScoreText
+      value: 
+      objectReference: {fileID: 739940275}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4183a08f4e85ef0438587b47ee806280, type: 2}
   m_IsPrefabParent: 0

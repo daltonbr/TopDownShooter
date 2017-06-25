@@ -33,10 +33,11 @@ public class MoveToPickup
         
         if (scoreEnemies > threshold && scorePickups > threshold)
         {
-            Debug.Log("MoveToPickup Score: " + scoreEnemies + scorePickups);
-            return (scoreEnemies + scorePickups);
+            var totalScore = scoreEnemies + scorePickups;
+            //Debug.Log("MoveToPickup Score: " + totalScore);
+            return totalScore;
         }
-        Debug.Log("MoveToPickup Score 0");
+        //Debug.Log("MoveToPickup Score 0");
         return 0f;
     }
 

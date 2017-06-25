@@ -10,8 +10,10 @@ public class AIManager : MonoBehaviour
     public Context context;
     public Scanner scanner;
 
+    /* Scorerers */
     public MoveToPickup moveToPickup;
-    
+    public MoveToBestPosition moveToBestPosition;
+
     [Header("Scanner")]
     public float scanTimeIntervalInSecs = 1f;
     [Range(0f, 30f)]
@@ -28,6 +30,7 @@ public class AIManager : MonoBehaviour
     [Header("Debug")]
     public bool debugMode = true;
     public GameObject debugPrefab;
+    public TextMesh debugScoreText;
     //[Range(0f, 1f)]
     //public float transparency = 0.25f;
 
@@ -36,17 +39,20 @@ public class AIManager : MonoBehaviour
 
     void Awake()
     {
+        /* Instantiating */
         this.player = this.gameObject.GetComponent<Player>();
         this.context = new Context(player);
         this.scanner = this.gameObject.AddComponent<Scanner>();
-        this.moveToPickup = new MoveToPickup(); //this.gameObject.AddComponent<MoveToPickup>();
         this.playerController = player.GetComponent<PlayerController>();
+        this.moveToPickup = new MoveToPickup();
+        this.moveToBestPosition = new MoveToBestPosition();
 
         Assert.IsNotNull(player, "[AIManager] player is null!");
         Assert.IsNotNull(context, "[AIManager] context is null!");
         Assert.IsNotNull(scanner, "[AIManager] scanner is null!");
         Assert.IsNotNull(moveToPickup, "[AIManager] moveToPickup is null!");
         Assert.IsNotNull(playerController, "[AIManager] playerController is null!");
+        Assert.IsNotNull(moveToBestPosition, "[AIManager] moveToBestPosition is null!");
 
         debugPrefabHolder = new GameObject();
         debugPrefabHolder.name = "debugPrefabHolder";
@@ -78,9 +84,9 @@ public class AIManager : MonoBehaviour
         {
             //Debug.Log("Has Enemies");
             /* MoveToPickup */
-            float score = moveToPickup.Run(context);
+            float pickupScore = moveToPickup.Run(context);
             //Debug.Log("MoveToPickup score: " + score);
-            if (score > 0)
+            if (pickupScore > 0)
             {
                 Vector3 desiredPosition = (context.GetNearestPickup().transform.position);
                 if (desiredPosition != null)
@@ -89,7 +95,11 @@ public class AIManager : MonoBehaviour
                 }
                 return;
             }
+
             /* Tactical Move */
+            Vector3 bestPosition = moveToBestPosition.GetBest(context);
+            playerController.desiredPositionByAI = bestPosition;
+            return; // Just to be sure
         }
         else
         {
@@ -108,7 +118,13 @@ public class AIManager : MonoBehaviour
         //TODO: [Optimization] make a pool with these prefabs   
         foreach (var v in positions)
         {
-            Destroy(Instantiate(debugPrefab, v, Quaternion.identity, debugPrefabHolder.gameObject.transform), 1f) ;
+            Destroy(Instantiate(debugPrefab, v, Quaternion.identity, debugPrefabHolder.gameObject.transform), 1f);
+            
+            //TODO: /* Put a label in the prefabs */
+            //for (int i = 0; i < context.sampledPositionsValues[i]; i++)
+            //{
+                
+            //}
         }
     }
 

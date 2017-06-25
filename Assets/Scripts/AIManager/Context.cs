@@ -11,6 +11,7 @@ public class Context
         this.enemies = new List<Enemy>();
         this.sampledPositions = new List<Vector3>();
         this.pickups = new List<Pickup>();
+        //this.sampledPositionsValues = new List<float>();
     }
 
     public void SetPlayer (Player player)
@@ -25,6 +26,23 @@ public class Context
     public List<Pickup> pickups { get; private set; }
 
     public List<Vector3> sampledPositions { get; private set; }
+
+    //public List<float> sampledPositionsValues { get; private set; }
+    
+    //public int getSampledPositionsValueByIndex(int index)
+    //{
+    //    return sampledPositionsValues[index];
+    //}
+
+    //public void setSampledPositionsValueByIndex(int index, float value)
+    //{
+    //    if (index < 0 || index > this.sampledPositions.Count -1)
+    //    {
+    //        Debug.LogError("[Context] Trying to set a value out-of-bounds!");
+    //        return;
+    //    }
+    //    sampledPositionsValues[index] = value;
+    //}
 
     public Pickup GetNearestPickup()
     {

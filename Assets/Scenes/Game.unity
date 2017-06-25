@@ -11520,6 +11520,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114697559737509298, guid: 8f842770af7dc534bb7ed8e23fa386d8,
+        type: 2}
+      propertyPath: waves.Array.data[0].timeBetweenSpawns
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114697559737509298, guid: 8f842770af7dc534bb7ed8e23fa386d8,
+        type: 2}
+      propertyPath: waves.Array.data[0].enemyCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114697559737509298, guid: 8f842770af7dc534bb7ed8e23fa386d8,
+        type: 2}
+      propertyPath: hpSpawnTime
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114697559737509298, guid: 8f842770af7dc534bb7ed8e23fa386d8,
+        type: 2}
+      propertyPath: hpCapAmmount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f842770af7dc534bb7ed8e23fa386d8, type: 2}
   m_IsPrefabParent: 0

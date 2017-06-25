@@ -9,6 +9,9 @@ public class MoveToBestPosition
     public ProximityToNearestEnemy proximityToNearestEnemy;
     public OverRangeToClosestEnemy overRangeToClosestEnemy;
     public OverRangeToAnyEnemy overRangeToAnyEnemy;
+    public LineOfSightToClosestEnemy lineOfSightToClosestEnemy;
+    public LineOfSightToAnyEnemy lineOfSightToAnyEnemy;
+    public ProximityToClosestPickup proximityToClosestPickup;
 
     public MoveToBestPosition()
     {
@@ -16,19 +19,17 @@ public class MoveToBestPosition
         proximityToNearestEnemy = new ProximityToNearestEnemy();
         overRangeToClosestEnemy = new OverRangeToClosestEnemy();
         overRangeToAnyEnemy = new OverRangeToAnyEnemy();
+        lineOfSightToClosestEnemy = new LineOfSightToClosestEnemy();
+        lineOfSightToAnyEnemy = new LineOfSightToAnyEnemy();
+        proximityToClosestPickup = new ProximityToClosestPickup();
     }
-
-    float score1, score2;
 
     public Vector3 GetBest(Context context)
     {
-        //Debug.Log("Getbest");
         List<Vector3> positions = context.sampledPositions;
         int positionsCount = positions.Count;
 
-        //List<float> scores = new List<float>();//context.sampledPositionsValues;
         float[] scores = new float[positionsCount];
-        //scores.Clear();
 
         for (int i = 0; i < positionsCount; i++)
         {
@@ -36,7 +37,9 @@ public class MoveToBestPosition
             scores[i] += proximityToNearestEnemy.Score(context, positions[i]);
             scores[i] += overRangeToClosestEnemy.Score(context, positions[i]);
             scores[i] += overRangeToAnyEnemy.Score(context, positions[i]);
-            //Debug.Log("Score[" + i + "]: " + scores[i]);
+            scores[i] += lineOfSightToClosestEnemy.Score(context, positions[i]);
+            scores[i] += lineOfSightToAnyEnemy.Score(context, positions[i]);
+            scores[i] += proximityToClosestPickup.Score(context, positions[i]);
         }
 
         //TODO: /* Show the scores in the debug prefab */
@@ -52,8 +55,9 @@ public class MoveToBestPosition
                 greaterScoreIndex = i;
             }            
         }
-        Debug.Log("Score[" + greaterScoreIndex + "]: " + greaterScore);
+
         /* Return it's respective sampledPosition */
+        Debug.Log("Score[" + greaterScoreIndex + "]: " + greaterScore);
         return positions[greaterScoreIndex];
     }
 
@@ -138,7 +142,7 @@ public sealed class OverRangeToClosestEnemy : CustomScorer<Vector3>
             }
         }
 
-        var range = (position - nearest).magnitude;
+        float range = (position - nearest).magnitude;
         if (range > desiredRange)
         {
             return this.score;
@@ -188,4 +192,111 @@ public sealed class OverRangeToAnyEnemy : CustomScorer<Vector3>
     }
 
 
+}
+
+public sealed class LineOfSightToClosestEnemy : CustomScorer<Vector3>
+{
+    new public float score = 50f;
+
+    public override float Score(Context context, Vector3 position)
+    {
+        Player player = context.player;
+
+        List<Enemy> enemies = context.enemies;
+        int count = enemies.Count;
+        if (count == 0)
+        {
+            return 0f;
+        }
+
+        var nearest = Vector3.zero;
+        var shortest = float.MaxValue;
+
+        for (int i = 0; i < count; i++)
+        {
+            Enemy enemy = enemies[i];
+
+            float distance = (player.transform.position - enemy.transform.position).sqrMagnitude;
+            if (distance < shortest)
+            {
+                shortest = distance;
+                nearest = enemy.transform.position;
+            }
+        }
+
+        Vector3 dir = (nearest - position);
+        float range = dir.magnitude;
+        Ray ray = new Ray(position + Vector3.up, dir);
+
+        if (!Physics.Raycast(ray, range, LayerMask.GetMask("Obstacle")))
+        {
+            return this.score;
+        }
+
+        return 0f;
+    }
+}
+
+public sealed class LineOfSightToAnyEnemy : CustomScorer<Vector3>
+{
+    new public float score = 50f;
+
+    public override float Score(Context context, Vector3 position)
+    {
+        List<Enemy> enemies = context.enemies;
+        int count = enemies.Count;
+        if (count == 0)
+        {
+            return 0f;
+        }
+
+        for (int i = 0; i < count; i++)
+        {
+            Enemy enemy = enemies[i];
+            Vector3 dir = enemy.transform.position - position;
+            float range = dir.magnitude;
+            Ray ray = new Ray(position + Vector3.up, dir);
+
+            if (!Physics.Raycast(ray, range, LayerMask.GetMask("Obstacle")))
+            {
+                return this.score;
+            }
+        }
+
+        return 0;
+    }
+}
+
+public sealed class ProximityToClosestPickup : CustomScorer<Vector3>
+{
+    new public float multiplier = 2f;
+    new public float score = 20f;
+
+    public override float Score(Context context, Vector3 position)
+    {
+        List<Pickup> pickups = context.pickups;
+        int count = pickups.Count;
+        if (count == 0)
+        {
+            return 0f;
+        }
+
+        Vector3 closest = Vector3.zero;
+        float shortest = float.MaxValue;
+
+        for (int i = 0; i < count; i++)
+        {
+            var pickup = pickups[i];
+
+            float distance = (position - pickup.transform.position).sqrMagnitude;
+            if (distance < shortest)
+            {
+                shortest = distance;
+                closest = pickup.transform.position;
+            }
+        }
+
+        var range = (position - closest).magnitude;
+        return Mathf.Max(0f, (this.score - range) * multiplier);
+    }
 }

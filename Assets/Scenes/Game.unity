@@ -4472,22 +4472,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 382277512}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &385418949 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1537194078531484, guid: 4183a08f4e85ef0438587b47ee806280,
-    type: 2}
-  m_PrefabInternal: {fileID: 1604240355}
---- !u!114 &385418962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 385418949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06a2bfc3659ee61469a22b1a98f94238, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &390916541
 GameObject:
   m_ObjectHideFlags: 0
@@ -15060,11 +15044,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 114189940940293722, guid: 4183a08f4e85ef0438587b47ee806280,
+    - target: {fileID: 114589680464609028, guid: 4183a08f4e85ef0438587b47ee806280,
         type: 2}
-      propertyPath: crosshairs
+      propertyPath: scanner
       value: 
-      objectReference: {fileID: 931815999}
+      objectReference: {fileID: 0}
     - target: {fileID: 114589680464609028, guid: 4183a08f4e85ef0438587b47ee806280,
         type: 2}
       propertyPath: debugScoreText
@@ -15072,9 +15056,9 @@ Prefab:
       objectReference: {fileID: 739940275}
     - target: {fileID: 114189940940293722, guid: 4183a08f4e85ef0438587b47ee806280,
         type: 2}
-      propertyPath: isInvencible
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: crosshairs
+      value: 
+      objectReference: {fileID: 931815999}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4183a08f4e85ef0438587b47ee806280, type: 2}
   m_IsPrefabParent: 0

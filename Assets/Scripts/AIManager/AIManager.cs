@@ -20,8 +20,8 @@ public class AIManager : MonoBehaviour
     public SetBestAttackTarget setBestAttackTarget;
 
     [Header("Tweaks")]
-    [Range(0f, 10f)]
-    public float aiErrorFactor = 1f;
+    //[Range(0f, 10f)]
+    //public float aiErrorFactor = 1f;
     [Range(0f, 3f)]
     public float coolDownToShoot = 1.5f;
 

@@ -28,7 +28,7 @@ public sealed class IsGunLoaded : Scorer
         {
             return 0f;
         }
-        Debug.Log("Need to Reload!");
+        //Debug.Log("Need to Reload!");
         return this.score;
     }
 }

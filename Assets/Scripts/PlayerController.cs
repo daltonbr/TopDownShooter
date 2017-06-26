@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     Vector3 velocity;
     Rigidbody myRigidbody;
     NavMeshAgent agent;
-    [SerializeField]
+    [HideInInspector]
     public Vector3 desiredPositionByAI;
 
     void Awake()

@@ -118,7 +118,7 @@ public class Gun : MonoBehaviour
     {
         if (isOutOfBullets())
         {
-            Debug.Log("Out of bullets! Can't reload!");
+            Debug.Log("Out of magazines! Can't reload!");
             return;
         }
 

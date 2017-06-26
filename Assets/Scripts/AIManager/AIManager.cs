@@ -19,6 +19,12 @@ public class AIManager : MonoBehaviour
     public ReloadGun reloadGun;
     public SetBestAttackTarget setBestAttackTarget;
 
+    [Header("Tweaks")]
+    [Range(0f, 10f)]
+    public float aiErrorFactor = 1f;
+    [Range(0f, 3f)]
+    public float coolDownToShoot = 1.5f;
+
     [Header("Scanner")]
     public float scanTimeIntervalInSecs = 1f;
     [Range(0f, 30f)]
@@ -40,7 +46,9 @@ public class AIManager : MonoBehaviour
     //public float transparency = 0.25f;
 
     GameObject debugPrefabHolder;
-    
+    //[HideInInspector]
+    //public Vector3 desiredShootingPosition;
+
 
     void Awake()
     {
@@ -111,7 +119,7 @@ public class AIManager : MonoBehaviour
             float reloadScore = reloadGun.Run(context);
             if (reloadScore > 0)
             {
-                Debug.Log("Reloading!");
+                Debug.Log("Trying to reload!");
                 player.gunController.Reload();
                 yield return null;
             }
@@ -160,10 +168,16 @@ public class AIManager : MonoBehaviour
             if (bestTargetScore > 0)
             {
                 Debug.Log("Acquiring Enemy " + context.nearestEnemy.name);
+                               
                 player.targetEntity = context.nearestEnemy;
 
+                //Vector2 error2D = Random.insideUnitCircle * aiErrorFactor;
+                //Vector3 error3D = new Vector3(error2D.x, player.targetEntity.transform.position.y, error2D.y);
+                //desiredShootingPosition = player.targetEntity.transform.position + error3D;
+
                 /* Fire Gun at target acquired */
-                player.AimAndShoot(3f);
+                player.crosshairs.transform.position = context.nearestEnemy.transform.position;
+                player.AimAndShoot(coolDownToShoot);
             }
             //Debug.Log("bestTargetScore: " + bestTargetScore);
             yield return null;

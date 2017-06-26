@@ -7,27 +7,31 @@ using UnityEngine.AI;
 [RequireComponent(typeof(GunController))]
 public class Player : LivingEntity
 {
+    public float moveSpeed = 5f;
+
     [Header("Invencibility")]
     public bool isInvencible = false;
     [Range(0f, 5f)]
     public float invencibilityCoolDown = 1.5f;
 
+    [Header("AI")]
     public bool isAIControlled = true;
-    public float moveSpeed = 5f;
-    public Crosshairs crosshairs;
-    public float thresholdCursorDistanceSquared = 1f;
-    Camera viewCamera;
+    private AIManager aiManager;
+
     PlayerController controller;
 	public GunController gunController;
     public int startingHealthPacks = 2;
     public int currentHealthPacks { get; private set; }
     [HideInInspector]
     public Vector3 spawnPoint;
+    public float thresholdCursorDistanceSquared = 1f;
+    public Crosshairs crosshairs;
 
     public event System.Action<int> OnChangeHPValue;
 
     private float dyingYValue = -10f;
     private NavMeshAgent agent;
+    Camera viewCamera;
 
     //private int Xbox_One_Controller = 0;
     //private int PS4_Controller = 0;
@@ -52,6 +56,8 @@ public class Player : LivingEntity
         if (isAIControlled)
         {    
             agent.speed = this.moveSpeed;
+            aiManager = GetComponent<AIManager>();
+            Assert.IsNotNull(aiManager, "[Player] aiManager couldn't be found");
         }
     }
 
@@ -133,6 +139,11 @@ public class Player : LivingEntity
         if (isAIControlled)
         {
             controller.MoveAgent();
+            if (this.targetEntity)
+            {
+                controller.LookAt(this.targetEntity.transform.position);
+                //controller.LookAt(aiManager.desiredShootingPosition);
+            }
         } else
         {
             moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
@@ -253,12 +264,13 @@ public class Player : LivingEntity
 
     public void AimAndShoot(float coolDownToShoot)
     {
+        //Shoot();
         StartCoroutine(CoroutineAimAndShoot(coolDownToShoot));
     }
 
     private IEnumerator CoroutineAimAndShoot(float coolDownToShoot)
     {
-        AimCrossHairAt(this.targetEntity.transform.position);
+        //AimCrossHairAt(this.targetEntity.transform.position);
         yield return new WaitForSeconds(coolDownToShoot);
         Shoot();
     }

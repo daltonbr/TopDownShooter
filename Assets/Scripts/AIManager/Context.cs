@@ -11,7 +11,8 @@ public class Context
         this.enemies = new List<Enemy>();
         this.sampledPositions = new List<Vector3>();
         this.pickups = new List<Pickup>();
-        //this.sampledPositionsValues = new List<float>();
+        SetNearestEnemy();
+        SetNearestPickup();
     }
 
     public void SetPlayer (Player player)
@@ -27,8 +28,11 @@ public class Context
 
     public List<Vector3> sampledPositions { get; private set; }
 
+    public Enemy nearestEnemy { get; private set; }
+    public Pickup nearestPickup { get; private set; }
+
     //public List<float> sampledPositionsValues { get; private set; }
-    
+
     //public int getSampledPositionsValueByIndex(int index)
     //{
     //    return sampledPositionsValues[index];
@@ -44,7 +48,7 @@ public class Context
     //    sampledPositionsValues[index] = value;
     //}
 
-    public Pickup GetNearestPickup()
+    public void SetNearestPickup()
     {
         Pickup nearest = null;
         float minorDistSqr = Mathf.Infinity;
@@ -58,6 +62,23 @@ public class Context
                 nearest = pickup;
             }
         }
-        return nearest;
+        this.nearestPickup = nearest;
+    }
+
+    public void SetNearestEnemy()
+    {
+        Enemy nearest = null;
+        float minorDistSqr = Mathf.Infinity;
+
+        foreach (var enemy in this.enemies)
+        {
+            float sqrDist = (player.transform.position - enemy.transform.position).sqrMagnitude;
+            if (sqrDist < minorDistSqr)
+            {
+                minorDistSqr = sqrDist;
+                nearest = enemy;
+            }
+        }
+        this.nearestEnemy = nearest;
     }
 }

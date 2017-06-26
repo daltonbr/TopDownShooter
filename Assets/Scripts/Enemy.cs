@@ -16,7 +16,7 @@ public class Enemy : LivingEntity
 
 	NavMeshAgent pathfinder;
 	Transform target;
-    LivingEntity targetEntity;
+    //LivingEntity targetEntity;
     Material skinMaterial;
 
     Color originalColor;

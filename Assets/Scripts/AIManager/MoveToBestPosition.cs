@@ -60,7 +60,7 @@ public class MoveToBestPosition
         }
 
         /* Return it's respective sampledPosition */
-        Debug.Log("Score[" + greaterScoreIndex + "]: " + greaterScore);
+        //Debug.Log("Score[" + greaterScoreIndex + "]: " + greaterScore);
         return positions[greaterScoreIndex];
     }
 

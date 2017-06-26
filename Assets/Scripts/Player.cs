@@ -11,7 +11,6 @@ public class Player : LivingEntity
     public bool isInvencible = false;
     [Range(0f, 5f)]
     public float invencibilityCoolDown = 1.5f;
-    //private bool recentlyHit = false;
 
     public bool isAIControlled = true;
     public float moveSpeed = 5f;
@@ -73,12 +72,13 @@ public class Player : LivingEntity
         }
 
     }
+
     IEnumerator InvencibilityTimer(float coolDownInSecs)
     {
-        Debug.Log("Waiting " + coolDownInSecs + " | Time: " + Time.time);
+        //Debug.Log("Waiting " + coolDownInSecs + " | Time: " + Time.time);
         isInvencible = true;
         yield return new WaitForSeconds (coolDownInSecs);
-        Debug.Log("Done | Time: " + Time.time);
+        //Debug.Log("Done | Time: " + Time.time);
         isInvencible = false;
     }
     //TODO: add a blinking effect here!

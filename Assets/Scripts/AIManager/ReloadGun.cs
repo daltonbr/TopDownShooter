@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
+/* Sum of Children - a sum of all Scorers, no threshold */
 public class ReloadGun
 {
-    /* Sum of Children */
     public Scorer isGunLoaded;
 
     public ReloadGun()

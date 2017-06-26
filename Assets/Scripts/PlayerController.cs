@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         agent.destination = position;
     }
+
     public void MoveAgent()
     {
         agent.destination = desiredPositionByAI;

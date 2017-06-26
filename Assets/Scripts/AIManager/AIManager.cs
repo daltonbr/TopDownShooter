@@ -17,6 +17,7 @@ public class AIManager : MonoBehaviour
     /* PlayerActions Scorerers */
     public UseHealth useHealth;
     public ReloadGun reloadGun;
+    public SetBestAttackTarget setBestAttackTarget;
 
     [Header("Scanner")]
     public float scanTimeIntervalInSecs = 1f;
@@ -52,6 +53,7 @@ public class AIManager : MonoBehaviour
         this.moveToBestPosition = new MoveToBestPosition();
         this.useHealth = new UseHealth();
         this.reloadGun = new ReloadGun();
+        this.setBestAttackTarget = new SetBestAttackTarget();
 
         Assert.IsNotNull(player, "[AIManager] player is null!");
         Assert.IsNotNull(context, "[AIManager] context is null!");
@@ -61,6 +63,7 @@ public class AIManager : MonoBehaviour
         Assert.IsNotNull(moveToBestPosition, "[AIManager] moveToBestPosition is null!");
         Assert.IsNotNull(useHealth, "[AIManager] useHealth is null!");
         Assert.IsNotNull(reloadGun, "[AIManager] reloadGun is null!");
+        Assert.IsNotNull(setBestAttackTarget, "[AIManager] setBestAttackTarget is null!");
 
         debugPrefabHolder = new GameObject();
         debugPrefabHolder.name = "debugPrefabHolder";
@@ -97,8 +100,11 @@ public class AIManager : MonoBehaviour
 
             if (pickupScore > 0)
             {
-                Vector3 desiredPosition = (context.GetNearestPickup().transform.position);
-                playerController.desiredPositionByAI = desiredPosition;
+                if(context.nearestPickup)
+                {
+                    Vector3 desiredPosition = (context.nearestPickup.transform.position);
+                    playerController.desiredPositionByAI = desiredPosition;
+                }
                 yield return null;
             }
 
@@ -143,19 +149,25 @@ public class AIManager : MonoBehaviour
             Debug.Log("NOT Using HP");
             //TODO: /* Throw Bomb */
 
-            yield return null;
+            //yield return null;
 
             //TODO: /* Reload Gun */
 
-            yield return null;
+            //yield return null;
 
             //TODO: /* Fire Gun - Set Target and Fire Gun */
-
+            float bestTargetScore = setBestAttackTarget.Run(context);
+            if (bestTargetScore > 0)
+            {
+                Debug.Log("Acquiring Enemy " + context.nearestEnemy.name);
+                player.targetEntity = context.nearestEnemy;
+            }
+            Debug.Log("bestTargetScore: " + bestTargetScore);
             yield return null;
 
             //TODO: /* Default Action - Idle */
 
-            yield return null;
+            //yield return null;
 
         } else
         {

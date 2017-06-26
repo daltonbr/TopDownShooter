@@ -16,6 +16,7 @@ public class MoveToPickup
     public Scorer hasEnemiesInRange;
     public Scorer hasPickupsInRange;
 
+    /* Constructor */
     public MoveToPickup()
     {
         hasEnemiesInRange = new HasEnemiesInRange();

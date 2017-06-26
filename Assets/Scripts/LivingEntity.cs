@@ -49,9 +49,14 @@ public class LivingEntity : MonoBehaviour, IDamageable
 		health = startingHealth;
 	}
 
-	public bool hasFullHealth()
+	public bool HasFullHealth()
 	{
 		return (health == startingHealth);
 	}
+
+    public float GetCurrentHealthPercent()
+    {
+        return health / startingHealth;
+    }
 			
 }

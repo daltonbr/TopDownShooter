@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 using System.Collections;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(GunController))]
 public class Player : LivingEntity
 {
+    [Header("Invencibility")]
     public bool isInvencible = false;
+    [Range(0f, 5f)]
+    public float invencibilityCoolDown = 1.5f;
+    //private bool recentlyHit = false;
+
     public bool isAIControlled = true;
     public float moveSpeed = 5f;
     public Crosshairs crosshairs;
@@ -16,10 +22,13 @@ public class Player : LivingEntity
 	public GunController gunController;
     public int startingHealthPacks = 2;
     public int currentHealthPacks { get; private set; }
+    [HideInInspector]
+    public Vector3 spawnPoint;
 
     public event System.Action<int> OnChangeHPValue;
 
     private float dyingYValue = -10f;
+    private NavMeshAgent agent;
 
     //private int Xbox_One_Controller = 0;
     //private int PS4_Controller = 0;
@@ -36,21 +45,43 @@ public class Player : LivingEntity
         gunController = GetComponent<GunController>() as GunController;
         viewCamera = Camera.main;
         FindObjectOfType<Spawner>().OnNewWave += OnNewWave;
-        currentHealthPacks = startingHealthPacks;              
+        currentHealthPacks = startingHealthPacks;
+        spawnPoint = this.transform.position;
+        agent = this.GetComponent<NavMeshAgent>();
+        Assert.IsNotNull(agent, "[Player] NavMeshAgent couldn't be found");
+
+        if (isAIControlled)
+        {    
+            agent.speed = this.moveSpeed;
+        }
     }
 
     public override void TakeDamage(float damage)
     {
-        if (!isInvencible || this.transform.position.y < dyingYValue)
+        if (!isInvencible)
         {
             health -= damage;
+            if (health >= 0 && !dead)
+            {
+                StartCoroutine(InvencibilityTimer(invencibilityCoolDown));
+            }
         }
 
         if (health <= 0 && !dead)
         {
             Die();
         }
+
     }
+    IEnumerator InvencibilityTimer(float coolDownInSecs)
+    {
+        Debug.Log("Waiting " + coolDownInSecs + " | Time: " + Time.time);
+        isInvencible = true;
+        yield return new WaitForSeconds (coolDownInSecs);
+        Debug.Log("Done | Time: " + Time.time);
+        isInvencible = false;
+    }
+    //TODO: add a blinking effect here!
 
     public void AddHealthPack()
     {
@@ -91,7 +122,7 @@ public class Player : LivingEntity
         /* kill the player when he is falling down */
         if (transform.position.y < dyingYValue)
         {
-            this.TakeDamage(health);
+            this.Die();
         }
 
         // Movement Input

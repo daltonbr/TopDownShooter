@@ -54,8 +54,8 @@ MonoBehaviour:
   devMode: 1
   waves:
   - infinite: 0
-    enemyCount: 3
-    timeBetweenSpawns: 5
+    enemyCount: 7
+    timeBetweenSpawns: 3
     moveSpeed: 2
     hitsToKillPlayer: 5
     enemyHealth: 1
@@ -91,8 +91,8 @@ MonoBehaviour:
   enemy: {fileID: 114230300785880278, guid: 330144030db6e48abb32af47c18650dd, type: 2}
   initialTileColor: {r: 1, g: 1, b: 1, a: 1}
   hp: {fileID: 114092336365459906, guid: f574b64c9cc7c4fc8be5f40dc587e607, type: 2}
-  hpSpawnTime: 1
-  hpCapAmmount: 0
+  hpSpawnTime: 20
+  hpCapAmmount: 1
   gunsPickupToRespawn:
   - {fileID: 114636228964975530, guid: 12be6547c7126f148a949df7418c5797, type: 2}
   - {fileID: 114213040671133558, guid: ce1e0f91881377a43b41801d3c7118cb, type: 2}

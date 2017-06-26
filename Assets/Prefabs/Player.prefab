@@ -1110,14 +1110,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7013d3b8478443b386c21397d6b243c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 10
-  isInvencible: 1
+  startingHealth: 30
+  isInvencible: 0
+  invencibilityCoolDown: 1.5
   isAIControlled: 1
   moveSpeed: 5
   crosshairs: {fileID: 0}
   thresholdCursorDistanceSquared: 1
   gunController: {fileID: 114737420985109968}
   startingHealthPacks: 2
+  spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &114201445404219946
 MonoBehaviour:
   m_ObjectHideFlags: 1

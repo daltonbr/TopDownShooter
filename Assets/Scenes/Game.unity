@@ -4472,6 +4472,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 382277512}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &385418949 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1537194078531484, guid: 4183a08f4e85ef0438587b47ee806280,
+    type: 2}
+  m_PrefabInternal: {fileID: 1604240355}
+--- !u!114 &385418962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 385418949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a2bfc3659ee61469a22b1a98f94238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &390916541
 GameObject:
   m_ObjectHideFlags: 0
@@ -11520,26 +11536,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114697559737509298, guid: 8f842770af7dc534bb7ed8e23fa386d8,
-        type: 2}
-      propertyPath: waves.Array.data[0].timeBetweenSpawns
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114697559737509298, guid: 8f842770af7dc534bb7ed8e23fa386d8,
-        type: 2}
-      propertyPath: waves.Array.data[0].enemyCount
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114697559737509298, guid: 8f842770af7dc534bb7ed8e23fa386d8,
-        type: 2}
-      propertyPath: hpSpawnTime
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114697559737509298, guid: 8f842770af7dc534bb7ed8e23fa386d8,
-        type: 2}
-      propertyPath: hpCapAmmount
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f842770af7dc534bb7ed8e23fa386d8, type: 2}
   m_IsPrefabParent: 0
@@ -15074,6 +15070,11 @@ Prefab:
       propertyPath: debugScoreText
       value: 
       objectReference: {fileID: 739940275}
+    - target: {fileID: 114189940940293722, guid: 4183a08f4e85ef0438587b47ee806280,
+        type: 2}
+      propertyPath: isInvencible
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4183a08f4e85ef0438587b47ee806280, type: 2}
   m_IsPrefabParent: 0

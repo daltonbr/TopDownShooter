@@ -12,6 +12,7 @@ public class MoveToBestPosition
     public LineOfSightToClosestEnemy lineOfSightToClosestEnemy;
     public LineOfSightToAnyEnemy lineOfSightToAnyEnemy;
     public ProximityToClosestPickup proximityToClosestPickup;
+    public ProximityToPlayerSpawner proximityToPlayerSpawner;
 
     public MoveToBestPosition()
     {
@@ -22,6 +23,7 @@ public class MoveToBestPosition
         lineOfSightToClosestEnemy = new LineOfSightToClosestEnemy();
         lineOfSightToAnyEnemy = new LineOfSightToAnyEnemy();
         proximityToClosestPickup = new ProximityToClosestPickup();
+        proximityToPlayerSpawner = new ProximityToPlayerSpawner();
     }
 
     public Vector3 GetBest(Context context)
@@ -40,6 +42,7 @@ public class MoveToBestPosition
             scores[i] += lineOfSightToClosestEnemy.Score(context, positions[i]);
             scores[i] += lineOfSightToAnyEnemy.Score(context, positions[i]);
             scores[i] += proximityToClosestPickup.Score(context, positions[i]);
+            scores[i] += proximityToPlayerSpawner.Score(context, positions[i]);
         }
 
         //TODO: /* Show the scores in the debug prefab */
@@ -113,8 +116,8 @@ public sealed class ProximityToNearestEnemy : CustomScorer<Vector3>
 
 public sealed class OverRangeToClosestEnemy : CustomScorer<Vector3>
 {
-    new public float desiredRange = 14f;
-    public new float score = 100f;
+    new public float desiredRange = 5f;
+    new public float score = 100f;
 
     public override float Score(Context context, Vector3 position)
     {
@@ -156,7 +159,7 @@ public sealed class OverRangeToClosestEnemy : CustomScorer<Vector3>
 
 public sealed class OverRangeToAnyEnemy : CustomScorer<Vector3>
 {
-    new public float desiredRange = 14f;
+    new public float desiredRange = 5f;
     new public float score = 50f;
 
     public override float Score(Context context, Vector3 position)
@@ -297,6 +300,18 @@ public sealed class ProximityToClosestPickup : CustomScorer<Vector3>
         }
 
         var range = (position - closest).magnitude;
+        return Mathf.Max(0f, (this.score - range) * multiplier);
+    }
+}
+
+public sealed class ProximityToPlayerSpawner : CustomScorer<Vector3>
+{
+    new public float multiplier = 1f;
+    new public float score = 100f;
+
+    public override float Score(Context context, Vector3 position)
+    {
+        float range = (position - context.player.spawnPoint).magnitude;
         return Mathf.Max(0f, (this.score - range) * multiplier);
     }
 }

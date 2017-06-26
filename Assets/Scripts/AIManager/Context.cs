@@ -11,8 +11,6 @@ public class Context
         this.enemies = new List<Enemy>();
         this.sampledPositions = new List<Vector3>();
         this.pickups = new List<Pickup>();
-        SetNearestEnemy();
-        SetNearestPickup();
     }
 
     public void SetPlayer (Player player)

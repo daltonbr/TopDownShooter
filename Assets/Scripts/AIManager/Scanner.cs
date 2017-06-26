@@ -21,6 +21,7 @@ public class Scanner : MonoBehaviour {
             context.enemies.Add(enemy);
         }
         //Debug.Log("Enemies.Lenght: " + context.enemies.Count);
+        context.SetNearestEnemy();
     }
 
     public void ScanForPickups(Context context, float powerupScanRange)
@@ -38,6 +39,7 @@ public class Scanner : MonoBehaviour {
             context.pickups.Add(pickup);
         }
         //Debug.Log("pickups.Lenght: " + context.pickups.Count);
+        context.SetNearestPickup();
     }
 
     public void ScanForPositions(Context context, float samplingRange, float samplingDensity)

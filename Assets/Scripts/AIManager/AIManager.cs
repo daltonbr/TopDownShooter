@@ -161,6 +161,9 @@ public class AIManager : MonoBehaviour
             {
                 Debug.Log("Acquiring Enemy " + context.nearestEnemy.name);
                 player.targetEntity = context.nearestEnemy;
+
+                /* Fire Gun at target acquired */
+                player.AimAndShoot(3f);
             }
             Debug.Log("bestTargetScore: " + bestTargetScore);
             yield return null;
@@ -175,8 +178,7 @@ public class AIManager : MonoBehaviour
             yield return null;
         }
     }
-
-
+    
     public bool HasEnemies()
     {
         return (context.enemies.Count != 0);

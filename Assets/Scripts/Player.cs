@@ -239,4 +239,28 @@ public class Player : LivingEntity
     {
         return this.gunController ? gunController.HasAnyMagazines() : false;
     }
+
+    public void Shoot()
+    {
+        this.gunController.OnTriggerHold();
+        this.gunController.OnTriggerRelease();
+    }
+
+    public void AimCrossHairAt(Vector3 targetPosition)
+    {
+        this.crosshairs.transform.position = targetPosition;
+    }
+
+    public void AimAndShoot(float coolDownToShoot)
+    {
+        StartCoroutine(CoroutineAimAndShoot(coolDownToShoot));
+    }
+
+    private IEnumerator CoroutineAimAndShoot(float coolDownToShoot)
+    {
+        AimCrossHairAt(this.targetEntity.transform.position);
+        yield return new WaitForSeconds(coolDownToShoot);
+        Shoot();
+    }
+
 }

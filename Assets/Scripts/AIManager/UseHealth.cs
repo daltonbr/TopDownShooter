@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
-public class UseHealth
+﻿public class UseHealth
 {
     /*
      * -= All or Nothing =-

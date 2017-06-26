@@ -230,4 +230,13 @@ public class Player : LivingEntity
         base.Die();
     }
 
+    public bool HasAnyBulletInMagazine()
+    {
+        return this.gunController ? gunController.HasAnyBulletInMagazine() : false;
+    }
+
+    public bool HasAnyMagazines()
+    {
+        return this.gunController ? gunController.HasAnyMagazines() : false;
+    }
 }

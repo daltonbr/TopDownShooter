@@ -16,6 +16,7 @@ public class AIManager : MonoBehaviour
 
     /* PlayerActions Scorerers */
     public UseHealth useHealth;
+    public ReloadGun reloadGun;
 
     [Header("Scanner")]
     public float scanTimeIntervalInSecs = 1f;
@@ -50,6 +51,7 @@ public class AIManager : MonoBehaviour
         this.moveToPickup = new MoveToPickup();
         this.moveToBestPosition = new MoveToBestPosition();
         this.useHealth = new UseHealth();
+        this.reloadGun = new ReloadGun();
 
         Assert.IsNotNull(player, "[AIManager] player is null!");
         Assert.IsNotNull(context, "[AIManager] context is null!");
@@ -58,6 +60,7 @@ public class AIManager : MonoBehaviour
         Assert.IsNotNull(playerController, "[AIManager] playerController is null!");
         Assert.IsNotNull(moveToBestPosition, "[AIManager] moveToBestPosition is null!");
         Assert.IsNotNull(useHealth, "[AIManager] useHealth is null!");
+        Assert.IsNotNull(reloadGun, "[AIManager] reloadGun is null!");
 
         debugPrefabHolder = new GameObject();
         debugPrefabHolder.name = "debugPrefabHolder";
@@ -95,10 +98,15 @@ public class AIManager : MonoBehaviour
             if (pickupScore > 0)
             {
                 Vector3 desiredPosition = (context.GetNearestPickup().transform.position);
-                if (desiredPosition != null)
-                {
-                    playerController.desiredPositionByAI = desiredPosition;
-                }
+                playerController.desiredPositionByAI = desiredPosition;
+                yield return null;
+            }
+
+            float reloadScore = reloadGun.Run(context);
+            if (reloadScore > 0)
+            {
+                Debug.Log("Reloading!");
+                player.gunController.Reload();
                 yield return null;
             }
 

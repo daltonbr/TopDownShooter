@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour {
 
-	public Transform weaponHold;
-	public Gun[] allGuns;
-	Gun equippedGun;
+    public Transform weaponHold;
+    public Gun[] allGuns;
+    Gun equippedGun;
 
 
-	public void EquipGun(Gun gunToEquip)
-	{
-		if (equippedGun != null)
-		{
-			Destroy(equippedGun.gameObject);
-		}
-		equippedGun = Instantiate (gunToEquip, weaponHold.position, weaponHold.rotation) as Gun;
-		equippedGun.transform.parent = weaponHold;
+    public void EquipGun(Gun gunToEquip)
+    {
+        if (equippedGun != null)
+        {
+            Destroy(equippedGun.gameObject);
+        }
+        equippedGun = Instantiate(gunToEquip, weaponHold.position, weaponHold.rotation) as Gun;
+        equippedGun.transform.parent = weaponHold;
 
         GameObject canvas = GameObject.Find("Canvas");
         if (canvas)
@@ -28,22 +28,21 @@ public class GunController : MonoBehaviour {
         {
             Debug.Log("[GunController] Canvas / GameUI not found! Can't register gun in GameUI!");
         }
-        
-	}
-	
+
+    }
+
     public void EquipGun(int weaponIndex)
     {
         EquipGun(allGuns[weaponIndex]);
     }
 
-
-	public void OnTriggerHold()
-	{
-		if (equippedGun != null)
-		{
-			equippedGun.OnTriggerHold();
-		}
-	}
+    public void OnTriggerHold()
+    {
+        if (equippedGun != null)
+        {
+            equippedGun.OnTriggerHold();
+        }
+    }
 
     public void OnTriggerRelease()
     {
@@ -75,6 +74,24 @@ public class GunController : MonoBehaviour {
         {
             equippedGun.Reload();
         }
+    }
+
+    public bool HasAnyBulletInMagazine()
+    {
+        if (equippedGun.projectilesRemainingInMag > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool HasAnyMagazines()
+    {
+        if (equippedGun.currentMagazines > 0)
+        {
+            return true;
+        }
+        return false;
     }
 
 }

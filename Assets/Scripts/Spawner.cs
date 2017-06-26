@@ -11,6 +11,7 @@ public class Spawner : MonoBehaviour {
     public Wave[] waves;
     public Enemy enemy;
     public Color initialTileColor = Color.white;
+    private int enemySpawnedCounter = 0;
 
 	LivingEntity playerEntity;
 	Transform playerT;
@@ -82,6 +83,7 @@ public class Spawner : MonoBehaviour {
             if ((enemiesRemainingToSpawn > 0 || currentWave.infinite) && Time.time > enemyNextSpawnTime)
             {
                 enemiesRemainingToSpawn--;
+                enemySpawnedCounter++;
                 enemyNextSpawnTime = Time.time + currentWave.timeBetweenSpawns;
 
                 StartCoroutine("SpawnEnemy");
@@ -159,6 +161,7 @@ public class Spawner : MonoBehaviour {
             yield return null;                      // just skip a frame
         }
         Enemy spawnedEnemy = Instantiate(enemy, spawnTile.position + Vector3.up, Quaternion.identity) as Enemy;
+        spawnedEnemy.name = "Enemy_" + enemySpawnedCounter.ToString();
         spawnedEnemy.OnDeath += OnEnemyDeath;
         spawnedEnemy.SetCharacteristics(currentWave.moveSpeed, currentWave.hitsToKillPlayer, currentWave.enemyHealth, currentWave.skinColor);
 

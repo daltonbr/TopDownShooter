@@ -30,7 +30,7 @@ public sealed class EnemyProximityToSelf : Scorer
     {
         if (context.nearestEnemy != null)
         {
-            Debug.Log("Nearest Enemy " + context.nearestEnemy.name);
+            //Debug.Log("Nearest Enemy " + context.nearestEnemy.name);
             float distance = (context.nearestEnemy.transform.position - context.player.transform.position).magnitude;
             return Mathf.Max(0f, (this.score - distance) * this.multiplier);
         }

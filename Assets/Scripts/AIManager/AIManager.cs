@@ -146,7 +146,7 @@ public class AIManager : MonoBehaviour
 
                 yield return null;
             }
-            Debug.Log("NOT Using HP");
+            //Debug.Log("NOT Using HP");
             //TODO: /* Throw Bomb */
 
             //yield return null;
@@ -165,7 +165,7 @@ public class AIManager : MonoBehaviour
                 /* Fire Gun at target acquired */
                 player.AimAndShoot(3f);
             }
-            Debug.Log("bestTargetScore: " + bestTargetScore);
+            //Debug.Log("bestTargetScore: " + bestTargetScore);
             yield return null;
 
             //TODO: /* Default Action - Idle */

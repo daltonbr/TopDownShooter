@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4206197573163616}
   - component: {fileID: 33391333131797436}
   - component: {fileID: 23348193788613110}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4959836747341420}
   - component: {fileID: 33526874562321656}
   - component: {fileID: 23116110242526680}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4192078517741026}
   - component: {fileID: 108384952666657916}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4989708823621096}
   - component: {fileID: 212872921201297000}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Muzzleflash 02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4166390392522832}
   - component: {fileID: 33756643879278162}
   - component: {fileID: 23486461418143514}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4854797179794352}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Shell ejection point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 4353245806611708}
   - component: {fileID: 33966820985563280}
   - component: {fileID: 23856211933395432}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 4022179026961788}
   - component: {fileID: 33202091722605842}
   - component: {fileID: 23457269685924186}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4914410762094948}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Projectile Spawn 04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4983398407106686}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Projectile Spawn 03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4939392841990592}
   - component: {fileID: 212514543580020700}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Muzzleflash 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4796618597471766}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Projectile Spawn 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4567678961231334}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4997243353585360}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Muzzleflash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4355723309949070}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Projectile Spawn 02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 4451109240649502}
   - component: {fileID: 33581433043901424}
   - component: {fileID: 23603068326747570}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 4273921985198622}
   - component: {fileID: 114484460455762314}
   - component: {fileID: 65066520375128096}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Gun 05Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}

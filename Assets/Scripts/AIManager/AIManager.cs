@@ -19,14 +19,18 @@ public class AIManager : MonoBehaviour
     public ReloadGun reloadGun;
     public SetBestAttackTarget setBestAttackTarget;
 
+    [Header("Tweaks")]
+    //[Range(0f, 10f)]
+    //public float aiErrorFactor = 1f;
+    [Range(0f, 3f)]
+    public float coolDownToShoot = 1.5f;
+
     [Header("Scanner")]
     public float scanTimeIntervalInSecs = 1f;
     [Range(0f, 30f)]
     public float enemyScanRange = 10f;
     [Range(0f, 30f)]
     public float pickupScanRange = 10f;
-
-    [Header("Movement")]
     [Range(0.5f, 3f)]
     public float samplingDensity = 1.5f;
     [Range(3f, 30f)]
@@ -38,9 +42,11 @@ public class AIManager : MonoBehaviour
     public TextMesh debugScoreText;
     //[Range(0f, 1f)]
     //public float transparency = 0.25f;
-
+    private DebugSpheres debugSpheres;
     GameObject debugPrefabHolder;
-    
+    //[HideInInspector]
+    //public Vector3 desiredShootingPosition;
+
 
     void Awake()
     {
@@ -54,6 +60,7 @@ public class AIManager : MonoBehaviour
         this.useHealth = new UseHealth();
         this.reloadGun = new ReloadGun();
         this.setBestAttackTarget = new SetBestAttackTarget();
+        
 
         Assert.IsNotNull(player, "[AIManager] player is null!");
         Assert.IsNotNull(context, "[AIManager] context is null!");
@@ -72,7 +79,7 @@ public class AIManager : MonoBehaviour
     void Start()
     {
         InvokeRepeating("Scan", scanTimeIntervalInSecs, scanTimeIntervalInSecs);
-        //InvokeRepeating("TacticalMovement", scanTimeIntervalInSecs, scanTimeIntervalInSecs);
+        InvokeRepeating("TacticalMovement", scanTimeIntervalInSecs, scanTimeIntervalInSecs);
     }
 
     private void Scan()
@@ -111,7 +118,7 @@ public class AIManager : MonoBehaviour
             float reloadScore = reloadGun.Run(context);
             if (reloadScore > 0)
             {
-                Debug.Log("Reloading!");
+                Debug.Log("Trying to reload!");
                 player.gunController.Reload();
                 yield return null;
             }
@@ -146,7 +153,7 @@ public class AIManager : MonoBehaviour
 
                 yield return null;
             }
-            Debug.Log("NOT Using HP");
+            //Debug.Log("NOT Using HP");
             //TODO: /* Throw Bomb */
 
             //yield return null;
@@ -160,12 +167,18 @@ public class AIManager : MonoBehaviour
             if (bestTargetScore > 0)
             {
                 Debug.Log("Acquiring Enemy " + context.nearestEnemy.name);
+                               
                 player.targetEntity = context.nearestEnemy;
 
+                //Vector2 error2D = Random.insideUnitCircle * aiErrorFactor;
+                //Vector3 error3D = new Vector3(error2D.x, player.targetEntity.transform.position.y, error2D.y);
+                //desiredShootingPosition = player.targetEntity.transform.position + error3D;
+
                 /* Fire Gun at target acquired */
-                player.AimAndShoot(3f);
+                player.crosshairs.transform.position = context.nearestEnemy.transform.position;
+                player.AimAndShoot(coolDownToShoot);
             }
-            Debug.Log("bestTargetScore: " + bestTargetScore);
+            //Debug.Log("bestTargetScore: " + bestTargetScore);
             yield return null;
 
             //TODO: /* Default Action - Idle */

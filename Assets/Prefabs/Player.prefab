@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4510112870031142}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WeaponHold
   m_TagString: Untagged
   m_Icon: {fileID: 1654036009018553494, guid: 0000000000000000d000000000000000, type: 0}
@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4751433054238996}
   - component: {fileID: 33215617400911552}
   - component: {fileID: 23538923963808726}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4600638349166838}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4816904639996474}
   - component: {fileID: 212643514423994086}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Muzzleflash 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4101103768662442}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Projectile Spawn 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 4894397779462620}
   - component: {fileID: 33288798862896680}
   - component: {fileID: 23990947154056162}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 4900904314585394}
   - component: {fileID: 33614254787056548}
   - component: {fileID: 23588361869547478}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 4576337637838196}
   - component: {fileID: 33622047068515830}
   - component: {fileID: 23472750318114828}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 4992487050661024}
   - component: {fileID: 33362159860609322}
   - component: {fileID: 23302136008586376}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4121747257183468}
   - component: {fileID: 212004662376354626}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Muzzleflash 02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4458972428562538}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Muzzleflash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,10 +205,8 @@ GameObject:
   - component: {fileID: 114737420985109968}
   - component: {fileID: 114589680464609028}
   - component: {fileID: 195364019589130298}
-  - component: {fileID: 114201445404219946}
-  - component: {fileID: 114522979536726774}
-  - component: {fileID: 114427286183461954}
-  m_Layer: 0
+  - component: {fileID: 114242567636229640}
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -224,7 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4182571673286732}
   - component: {fileID: 108649317601075054}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +237,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4505737325950194}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shell ejection point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +254,7 @@ GameObject:
   - component: {fileID: 4816955940267890}
   - component: {fileID: 114591050151657612}
   - component: {fileID: 114711201292953942}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun 01(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +271,7 @@ GameObject:
   - component: {fileID: 4177529138584450}
   - component: {fileID: 33862291064529674}
   - component: {fileID: 23206333861570622}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +286,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4261167015673424}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Muzzleflash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4264953432464384}
   - component: {fileID: 212645815374254896}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Muzzleflash 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4467047221794488}
   - component: {fileID: 108608505197534470}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +333,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4616942600055196}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Projectile Spawn 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +348,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4903862301185118}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shell ejection point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +365,7 @@ GameObject:
   - component: {fileID: 4671609461518264}
   - component: {fileID: 114517760457965222}
   - component: {fileID: 114725843983714618}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun 01(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +380,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4825523146930076}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4989588572730522}
   - component: {fileID: 212289517031158452}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Muzzleflash 02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1112,26 +1110,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 30
-  isInvencible: 0
-  invencibilityCoolDown: 1.5
-  isAIControlled: 1
+  targetEntity: {fileID: 0}
   moveSpeed: 5
-  crosshairs: {fileID: 0}
-  thresholdCursorDistanceSquared: 1
   gunController: {fileID: 114737420985109968}
   startingHealthPacks: 2
   spawnPoint: {x: 0, y: 0, z: 0}
---- !u!114 &114201445404219946
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1537194078531484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c3f3aac4017573449bee7f317aa4e70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  thresholdCursorDistanceSquared: 1
+  crosshairs: {fileID: 0}
+  isInvencible: 0
+  invencibilityCoolDown: 1.5
+  isAIControlled: 1
 --- !u!114 &114206832340054318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1144,7 +1132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desiredPositionByAI: {x: 0, y: 0, z: 0}
---- !u!114 &114427286183461954
+--- !u!114 &114242567636229640
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1152,9 +1140,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1537194078531484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: d82c4e27e9439d04fbb78b9e548d0220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transparency: 0.3
+  spheres: []
+  radius: 0.3
+  prefab: {fileID: 1868664575650442, guid: 6ea1298bb0dccca47947fab31dc4c932, type: 2}
 --- !u!114 &114517760457965222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1185,17 +1177,6 @@ MonoBehaviour:
   shellEjection: {fileID: 4903862301185118}
   shootAudio: {fileID: 8300000, guid: fac59437641d2421e9f6ac845763b8a8, type: 3}
   reloadAudio: {fileID: 8300000, guid: 0a8071705a91241d7bfe488a2f30620f, type: 3}
---- !u!114 &114522979536726774
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1537194078531484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c3f3aac4017573449bee7f317aa4e70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114589680464609028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1208,7 +1189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 114189940940293722}
-  scanner: {fileID: 114522979536726774}
+  scanner: {fileID: 0}
+  coolDownToShoot: 1
   scanTimeIntervalInSecs: 1
   enemyScanRange: 15
   pickupScanRange: 15

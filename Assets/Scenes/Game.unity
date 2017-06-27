@@ -4472,22 +4472,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 382277512}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &385418949 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1537194078531484, guid: 4183a08f4e85ef0438587b47ee806280,
-    type: 2}
-  m_PrefabInternal: {fileID: 1604240355}
---- !u!114 &385418962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 385418949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06a2bfc3659ee61469a22b1a98f94238, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &390916541
 GameObject:
   m_ObjectHideFlags: 0
@@ -7446,11 +7430,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 739468350}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!102 &739940275 stripped
-TextMesh:
-  m_PrefabParentObject: {fileID: 102261419146655564, guid: 6ea1298bb0dccca47947fab31dc4c932,
-    type: 2}
-  m_PrefabInternal: {fileID: 817919680}
 --- !u!1 &742591583
 GameObject:
   m_ObjectHideFlags: 0
@@ -8507,52 +8486,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 813303906}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &817919680
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4275892787225650, guid: 6ea1298bb0dccca47947fab31dc4c932, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4275892787225650, guid: 6ea1298bb0dccca47947fab31dc4c932, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4275892787225650, guid: 6ea1298bb0dccca47947fab31dc4c932, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4275892787225650, guid: 6ea1298bb0dccca47947fab31dc4c932, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4275892787225650, guid: 6ea1298bb0dccca47947fab31dc4c932, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4275892787225650, guid: 6ea1298bb0dccca47947fab31dc4c932, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4275892787225650, guid: 6ea1298bb0dccca47947fab31dc4c932, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4275892787225650, guid: 6ea1298bb0dccca47947fab31dc4c932, type: 2}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1868664575650442, guid: 6ea1298bb0dccca47947fab31dc4c932, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6ea1298bb0dccca47947fab31dc4c932, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &827460393
 GameObject:
   m_ObjectHideFlags: 0
@@ -9948,8 +9881,8 @@ RectTransform:
   m_Father: {fileID: 1667443946}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.3, y: 0.1}
-  m_AnchorMax: {x: 0.7, y: 0.4}
+  m_AnchorMin: {x: 0.2, y: 0.1}
+  m_AnchorMax: {x: 0.8, y: 0.4}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11534,6 +11467,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4823427351463040, guid: 8f842770af7dc534bb7ed8e23fa386d8, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114697559737509298, guid: 8f842770af7dc534bb7ed8e23fa386d8,
+        type: 2}
+      propertyPath: gunsSpawnTime.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114697559737509298, guid: 8f842770af7dc534bb7ed8e23fa386d8,
+        type: 2}
+      propertyPath: gunsCapAmmount
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -15069,13 +15012,9 @@ Prefab:
         type: 2}
       propertyPath: debugScoreText
       value: 
-      objectReference: {fileID: 739940275}
-    - target: {fileID: 114189940940293722, guid: 4183a08f4e85ef0438587b47ee806280,
-        type: 2}
-      propertyPath: isInvencible
-      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114242567636229640, guid: 4183a08f4e85ef0438587b47ee806280, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4183a08f4e85ef0438587b47ee806280, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1614847401
@@ -16478,8 +16417,8 @@ RectTransform:
   m_Father: {fileID: 1667443946}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.3, y: 0.4}
-  m_AnchorMax: {x: 0.7, y: 1}
+  m_AnchorMin: {x: 0.1, y: 0.4}
+  m_AnchorMax: {x: 0.9, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

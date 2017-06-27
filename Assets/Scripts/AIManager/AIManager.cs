@@ -185,7 +185,7 @@ public class AIManager : MonoBehaviour
     }
 
     public void DebugPositions(List<Vector3> positions)
-    {
+    {  
         //TODO: [Optimization] make a pool with these prefabs   
         foreach (var v in positions)
         {
@@ -198,5 +198,27 @@ public class AIManager : MonoBehaviour
             //}
         }
     }
+    
+    private void InstantiateDebugSpheres(int numSpheres)
+    {
+        for (int i = 0; i < numSpheres; i++)
+        {
+            Instantiate(debugPrefab, Vector3.zero, Quaternion.identity, debugPrefabHolder.gameObject.transform);
+        }
+    }
 
+}
+
+public class DebugSphere
+{
+    public int index;
+    public GameObject prefab;
+    public float radius;
+    public float transparency;
+    public int score;
+
+    public DebugSphere(int index)
+    {
+        this.index = index;
+    }
 }

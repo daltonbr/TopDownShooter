@@ -31,8 +31,6 @@ public class AIManager : MonoBehaviour
     public float enemyScanRange = 10f;
     [Range(0f, 30f)]
     public float pickupScanRange = 10f;
-
-    [Header("Movement")]
     [Range(0.5f, 3f)]
     public float samplingDensity = 1.5f;
     [Range(3f, 30f)]
@@ -44,7 +42,7 @@ public class AIManager : MonoBehaviour
     public TextMesh debugScoreText;
     //[Range(0f, 1f)]
     //public float transparency = 0.25f;
-
+    private DebugSpheres debugSpheres;
     GameObject debugPrefabHolder;
     //[HideInInspector]
     //public Vector3 desiredShootingPosition;
@@ -62,6 +60,7 @@ public class AIManager : MonoBehaviour
         this.useHealth = new UseHealth();
         this.reloadGun = new ReloadGun();
         this.setBestAttackTarget = new SetBestAttackTarget();
+        
 
         Assert.IsNotNull(player, "[AIManager] player is null!");
         Assert.IsNotNull(context, "[AIManager] context is null!");
@@ -80,7 +79,7 @@ public class AIManager : MonoBehaviour
     void Start()
     {
         InvokeRepeating("Scan", scanTimeIntervalInSecs, scanTimeIntervalInSecs);
-        //InvokeRepeating("TacticalMovement", scanTimeIntervalInSecs, scanTimeIntervalInSecs);
+        InvokeRepeating("TacticalMovement", scanTimeIntervalInSecs, scanTimeIntervalInSecs);
     }
 
     private void Scan()

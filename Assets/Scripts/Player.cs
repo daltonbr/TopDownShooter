@@ -8,6 +8,14 @@ using UnityEngine.AI;
 public class Player : LivingEntity
 {
     public float moveSpeed = 5f;
+    PlayerController controller;
+    public GunController gunController;
+    public int startingHealthPacks = 2;
+    public int currentHealthPacks { get; private set; }
+    [HideInInspector]
+    public Vector3 spawnPoint;
+    public float thresholdCursorDistanceSquared = 1f;
+    public Crosshairs crosshairs;
 
     [Header("Invencibility")]
     public bool isInvencible = false;
@@ -16,16 +24,7 @@ public class Player : LivingEntity
 
     [Header("AI")]
     public bool isAIControlled = true;
-    private AIManager aiManager;
-
-    PlayerController controller;
-	public GunController gunController;
-    public int startingHealthPacks = 2;
-    public int currentHealthPacks { get; private set; }
-    [HideInInspector]
-    public Vector3 spawnPoint;
-    public float thresholdCursorDistanceSquared = 1f;
-    public Crosshairs crosshairs;
+    private AIManager aiManager;     
 
     public event System.Action<int> OnChangeHPValue;
 

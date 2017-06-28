@@ -285,12 +285,15 @@ public sealed class ProximityToClosestPickup : CustomScorer<Vector3>
         for (int i = 0; i < count; i++)
         {
             var pickup = pickups[i];
-
-            float distance = (position - pickup.transform.position).sqrMagnitude;
-            if (distance < shortest)
+            /* sometimes this pickup was already destroyed  (picked) in the scene */
+            if (pickup != null)
             {
-                shortest = distance;
-                closest = pickup.transform.position;
+                float distance = (position - pickup.transform.position).sqrMagnitude;
+                if (distance < shortest)
+                {
+                    shortest = distance;
+                    closest = pickup.transform.position;
+                }
             }
         }
 

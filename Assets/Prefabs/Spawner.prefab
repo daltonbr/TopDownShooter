@@ -54,8 +54,8 @@ MonoBehaviour:
   devMode: 1
   waves:
   - infinite: 0
-    enemyCount: 20
-    timeBetweenSpawns: 3
+    enemyCount: 5
+    timeBetweenSpawns: 1.5
     moveSpeed: 2
     hitsToKillPlayer: 5
     enemyHealth: 1
@@ -99,5 +99,5 @@ MonoBehaviour:
   - {fileID: 114263905127382348, guid: 7185cae51acb7994585391493fc0b8a3, type: 2}
   - {fileID: 114871434587450952, guid: b0234802b184a9e45b316365b962a150, type: 2}
   - {fileID: 114484460455762314, guid: 90c2335754c129b4a977e5599e89dd03, type: 2}
-  gunsSpawnTime: {x: 3, y: 6}
-  gunsCapAmmount: 0
+  gunsSpawnTime: {x: 3, y: 10}
+  gunsCapAmmount: 1

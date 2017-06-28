@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 33156376464507924}
   - component: {fileID: 135645377421416320}
   - component: {fileID: 23207367210788110}
-  - component: {fileID: 114964428445608430}
+  - component: {fileID: 114627957921058568}
   m_Layer: 0
   m_Name: DebugSphere
   m_TagString: Untagged
@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1868664575650442}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1, y: 2, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4834192852056912}
@@ -166,7 +166,7 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
---- !u!114 &114964428445608430
+--- !u!114 &114627957921058568
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -178,7 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 102261419146655564}
-  meshFilter: {fileID: 33156376464507924}
+  meshRenderer: {fileID: 23207367210788110}
+  lerpedColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!135 &135645377421416320
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -57,44 +57,8 @@ public class MoveToBestPosition
         }
         
         return positions[greaterScoreIndex];
-
-        //TODO: /* Show the scores in the debug debugSpherePrefab */
-
-        //TODO: /* Determine the index of the greater score*/
-        //int greaterScoreIndex = 0;
-        //float greaterScore = -1f;
-        //for (int i = 0; i < positionsCount; i++)
-        //{
-        //    if (scores[i] > greaterScore)
-        //    {
-        //        greaterScore = scores[i];
-        //        greaterScoreIndex = i;
-        //    }
-        //}
-
-        /* Return it's respective sampledPosition */
-        //Debug.Log("Score[" + greaterScoreIndex + "]: " + greaterScore);
-        // return positions[greaterScoreIndex];
     }
-
-    //public Vector3 GetBest(Context context)
-    //{
-    //    return context.sampledPositions[greaterScoreIndex];
-    //}
-
-    public void UpdateScoresOnDebugSpheres(DebugSphere[] spheres)
-    {
-        if (scores != null)
-        {
-            Debug.LogWarning("scores is null! Probably not calculated yet!");
-            return;
-        }
-        for (int i = 0; i < spheres.Length; i++)
-        {
-            spheres[i].SetScore(scores[i]);
-        }
-    }
-
+    
 }
 
 public sealed class PositionProximityToSelf : CustomScorer<Vector3>

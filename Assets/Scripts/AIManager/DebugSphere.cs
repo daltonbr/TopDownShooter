@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class DebugSphere : MonoBehaviour
 {
-    public TextMesh score;
-    public MeshFilter meshFilter;
+    public TextMesh score;  
+    public MeshRenderer meshRenderer;
+    public Color lerpedColor = Color.white;
 
     void Awake()
     {
-        //meshFilter = this.GetComponent<MeshFilter>();
-        Assert.IsNotNull(meshFilter, "[DebugSphere] Mesh Filter is null!");
+        Assert.IsNotNull(meshRenderer, "[DebugSphere] meshRenderer is null!");
     }
 
     public void UpdateColor(Color color)
@@ -33,6 +33,13 @@ public class DebugSphere : MonoBehaviour
     public void UpdateTransparency(float alphaValue)
     {
 
+    }
+
+
+    void Update()
+    {
+        //lerpedColor = Color.Lerp(Color.white, Color.black, Mathf.PingPong(Time.time, 1));
+        //material.color = lerpedColor;
     }
 
 }

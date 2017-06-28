@@ -40,8 +40,10 @@ public class AIManager : MonoBehaviour
     public bool debugMode = true;
     public GameObject debugPrefab;
     public TextMesh debugScoreText;
-    //[Range(0f, 1f)]
-    //public float transparency = 0.25f;
+    [Range(0f, 1f)]
+    public float transparency = 0.25f;
+    [Range(0.1f, 1f)]
+    public float radius = 0.5f;
     private DebugSphereManager debugSphereManager;
     GameObject debugPrefabHolder;
     //[HideInInspector]

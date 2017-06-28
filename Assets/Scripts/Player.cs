@@ -9,6 +9,7 @@ public class Player : LivingEntity
 {
     public float moveSpeed = 5f;
     PlayerController controller;
+    [HideInInspector]
     public GunController gunController;
     public int startingHealthPacks = 2;
     public int currentHealthPacks { get; private set; }

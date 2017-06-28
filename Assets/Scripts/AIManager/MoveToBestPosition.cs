@@ -13,6 +13,9 @@ public class MoveToBestPosition
     public LineOfSightToAnyEnemy lineOfSightToAnyEnemy;
     public ProximityToClosestPickup proximityToClosestPickup;
     public ProximityToPlayerSpawner proximityToPlayerSpawner;
+    public float[] scores;
+    int greaterScoreIndex;
+    float greaterScore;
 
     public MoveToBestPosition()
     {
@@ -31,7 +34,9 @@ public class MoveToBestPosition
         List<Vector3> positions = context.sampledPositions;
         int positionsCount = positions.Count;
 
-        float[] scores = new float[positionsCount];
+        scores = new float[positionsCount];
+        greaterScoreIndex = -1;
+        greaterScore = -1f;
 
         for (int i = 0; i < positionsCount; i++)
         {
@@ -43,25 +48,51 @@ public class MoveToBestPosition
             scores[i] += lineOfSightToAnyEnemy.Score(context, positions[i]);
             scores[i] += proximityToClosestPickup.Score(context, positions[i]);
             scores[i] += proximityToPlayerSpawner.Score(context, positions[i]);
-        }
 
-        //TODO: /* Show the scores in the debug prefab */
+            if (greaterScore < scores[i])
+            {
+                greaterScoreIndex = i;
+                greaterScore = scores[i];
+            }
+        }
+        
+        return positions[greaterScoreIndex];
+
+        //TODO: /* Show the scores in the debug debugSpherePrefab */
 
         //TODO: /* Determine the index of the greater score*/
-        int greaterScoreIndex = 0;
-        float greaterScore = -1f;
-        for (int i = 0; i < positionsCount; i++)
-        {
-            if (scores[i] > greaterScore)
-            {
-                greaterScore = scores[i];
-                greaterScoreIndex = i;
-            }            
-        }
+        //int greaterScoreIndex = 0;
+        //float greaterScore = -1f;
+        //for (int i = 0; i < positionsCount; i++)
+        //{
+        //    if (scores[i] > greaterScore)
+        //    {
+        //        greaterScore = scores[i];
+        //        greaterScoreIndex = i;
+        //    }
+        //}
 
         /* Return it's respective sampledPosition */
         //Debug.Log("Score[" + greaterScoreIndex + "]: " + greaterScore);
-        return positions[greaterScoreIndex];
+        // return positions[greaterScoreIndex];
+    }
+
+    //public Vector3 GetBest(Context context)
+    //{
+    //    return context.sampledPositions[greaterScoreIndex];
+    //}
+
+    public void UpdateScoresOnDebugSpheres(DebugSphere[] spheres)
+    {
+        if (scores != null)
+        {
+            Debug.LogWarning("scores is null! Probably not calculated yet!");
+            return;
+        }
+        for (int i = 0; i < spheres.Length; i++)
+        {
+            spheres[i].SetScore(scores[i]);
+        }
     }
 
 }

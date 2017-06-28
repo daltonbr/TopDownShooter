@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1868664575650442
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 33156376464507924}
   - component: {fileID: 135645377421416320}
   - component: {fileID: 23207367210788110}
+  - component: {fileID: 114964428445608430}
   m_Layer: 0
   m_Name: DebugSphere
   m_TagString: Untagged
@@ -165,6 +166,19 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
+--- !u!114 &114964428445608430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1868664575650442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7da3bbbfb4f4e2468c001ab5372afe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: {fileID: 102261419146655564}
+  meshFilter: {fileID: 33156376464507924}
 --- !u!135 &135645377421416320
 SphereCollider:
   m_ObjectHideFlags: 1

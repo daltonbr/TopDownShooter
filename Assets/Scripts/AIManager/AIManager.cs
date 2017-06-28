@@ -42,7 +42,7 @@ public class AIManager : MonoBehaviour
     public TextMesh debugScoreText;
     //[Range(0f, 1f)]
     //public float transparency = 0.25f;
-    private DebugSpheres debugSpheres;
+    private DebugSphereManager debugSphereManager;
     GameObject debugPrefabHolder;
     //[HideInInspector]
     //public Vector3 desiredShootingPosition;
@@ -60,6 +60,7 @@ public class AIManager : MonoBehaviour
         this.useHealth = new UseHealth();
         this.reloadGun = new ReloadGun();
         this.setBestAttackTarget = new SetBestAttackTarget();
+        this.debugSphereManager = this.gameObject.AddComponent<DebugSphereManager>();
         
 
         Assert.IsNotNull(player, "[AIManager] player is null!");
@@ -71,9 +72,10 @@ public class AIManager : MonoBehaviour
         Assert.IsNotNull(useHealth, "[AIManager] useHealth is null!");
         Assert.IsNotNull(reloadGun, "[AIManager] reloadGun is null!");
         Assert.IsNotNull(setBestAttackTarget, "[AIManager] setBestAttackTarget is null!");
+        Assert.IsNotNull(debugSphereManager, "[AIManager] debugSphereManager is null!");
 
-        debugPrefabHolder = new GameObject();
-        debugPrefabHolder.name = "debugPrefabHolder";
+        //debugPrefabHolder = new GameObject();
+        //debugPrefabHolder.name = "debugPrefabHolder";
     }
 
     void Start()
@@ -88,10 +90,10 @@ public class AIManager : MonoBehaviour
         scanner.ScanForEnemies(this.context, enemyScanRange);
         scanner.ScanForPickups(this.context, pickupScanRange);
         scanner.ScanForPositions(this.context, samplingRange, samplingDensity);
-        if (debugMode)
-        {
-            DebugPositions(this.context.sampledPositions);
-        }
+        //if (debugMode)
+        //{
+        //    debugSphereManager.UpdateSpheres(context.sampledPositions);
+        //}
 
         /* TacticalMovement and PlayerAction runs in parallel */
         StartCoroutine(TacticalMovement());
@@ -124,7 +126,15 @@ public class AIManager : MonoBehaviour
             }
 
             /* Tactical Move */
+            //moveToBestPosition.Run(context);
             Vector3 bestPosition = moveToBestPosition.GetBest(context);
+
+            if (debugMode)
+            {
+                /* Update spheres placement and scores */
+                debugSphereManager.UpdateSpheres(context.sampledPositions, moveToBestPosition.scores);
+            }
+
             playerController.desiredPositionByAI = bestPosition;
             yield return null; // Just to be sure
         }
@@ -166,7 +176,7 @@ public class AIManager : MonoBehaviour
             float bestTargetScore = setBestAttackTarget.Run(context);
             if (bestTargetScore > 0)
             {
-                Debug.Log("Acquiring Enemy " + context.nearestEnemy.name);
+                //Debug.Log("Acquiring Enemy " + context.nearestEnemy.name);
                                
                 player.targetEntity = context.nearestEnemy;
 
@@ -197,41 +207,4 @@ public class AIManager : MonoBehaviour
         return (context.enemies.Count != 0);
     }
 
-    public void DebugPositions(List<Vector3> positions)
-    {  
-        //TODO: [Optimization] make a pool with these prefabs   
-        foreach (var v in positions)
-        {
-            Destroy(Instantiate(debugPrefab, v, Quaternion.identity, debugPrefabHolder.gameObject.transform), 1f);
-            
-            //TODO: /* Put a label in the prefabs */
-            //for (int i = 0; i < context.sampledPositionsValues[i]; i++)
-            //{
-                
-            //}
-        }
-    }
-    
-    private void InstantiateDebugSpheres(int numSpheres)
-    {
-        for (int i = 0; i < numSpheres; i++)
-        {
-            Instantiate(debugPrefab, Vector3.zero, Quaternion.identity, debugPrefabHolder.gameObject.transform);
-        }
-    }
-
-}
-
-public class DebugSphere
-{
-    public int index;
-    public GameObject prefab;
-    public float radius;
-    public float transparency;
-    public int score;
-
-    public DebugSphere(int index)
-    {
-        this.index = index;
-    }
 }

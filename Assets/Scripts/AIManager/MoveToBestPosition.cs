@@ -91,11 +91,14 @@ public sealed class ProximityToNearestEnemy : CustomScorer<Vector3>
         {
             Enemy enemy = enemies[i];
 
-            float distance = (position - enemy.transform.position).sqrMagnitude;
-            if (distance < shortest)
+            if (enemy)
             {
-                shortest = distance;
-                nearest = enemy.transform.position;
+                float distance = (position - enemy.transform.position).sqrMagnitude;
+                if (distance < shortest)
+                {
+                    shortest = distance;
+                    nearest = enemy.transform.position;
+                }
             }
         }
 
@@ -132,11 +135,14 @@ public sealed class OverRangeToClosestEnemy : CustomScorer<Vector3>
         {
             Enemy enemy = enemies[i];
 
-            float distance = (player.transform.position - enemy.transform.position).sqrMagnitude;
-            if (distance < shortest)
+            if (enemy)
             {
-                shortest = distance;
-                nearest = enemy.transform.position;
+                float distance = (player.transform.position - enemy.transform.position).sqrMagnitude;
+                if (distance < shortest)
+                {
+                    shortest = distance;
+                    nearest = enemy.transform.position;
+                }
             }
         }
 
@@ -173,16 +179,19 @@ public sealed class OverRangeToAnyEnemy : CustomScorer<Vector3>
         {
             Enemy enemy = enemies[i];
 
-            Vector3 dirPlayerToEnemy = (enemy.transform.position - player.transform.position);
-            Vector3 dirPositionToEnemy = (enemy.transform.position - position);
-
-            dirPlayerToEnemy = new Vector3(dirPlayerToEnemy.x, 0f, dirPlayerToEnemy.z);
-            dirPositionToEnemy = new Vector3(dirPositionToEnemy.x, 0f, dirPositionToEnemy.z);
-
-            //all positions behind the enemy or closer than the desired range are not of interest
-            if (Vector3.Dot(dirPlayerToEnemy, dirPositionToEnemy) < 0f || dirPositionToEnemy.sqrMagnitude < sqrDesiredRange)
+            if (enemy)
             {
-                return 0f;
+                Vector3 dirPlayerToEnemy = (enemy.transform.position - player.transform.position);
+                Vector3 dirPositionToEnemy = (enemy.transform.position - position);
+
+                dirPlayerToEnemy = new Vector3(dirPlayerToEnemy.x, 0f, dirPlayerToEnemy.z);
+                dirPositionToEnemy = new Vector3(dirPositionToEnemy.x, 0f, dirPositionToEnemy.z);
+
+                //all positions behind the enemy or closer than the desired range are not of interest
+                if (Vector3.Dot(dirPlayerToEnemy, dirPositionToEnemy) < 0f || dirPositionToEnemy.sqrMagnitude < sqrDesiredRange)
+                {
+                    return 0f;
+                }
             }
         }
 
@@ -213,12 +222,14 @@ public sealed class LineOfSightToClosestEnemy : CustomScorer<Vector3>
         for (int i = 0; i < count; i++)
         {
             Enemy enemy = enemies[i];
-
-            float distance = (player.transform.position - enemy.transform.position).sqrMagnitude;
-            if (distance < shortest)
+            if (enemy)
             {
-                shortest = distance;
-                nearest = enemy.transform.position;
+                float distance = (player.transform.position - enemy.transform.position).sqrMagnitude;
+                if (distance < shortest)
+                {
+                    shortest = distance;
+                    nearest = enemy.transform.position;
+                }
             }
         }
 
@@ -251,13 +262,16 @@ public sealed class LineOfSightToAnyEnemy : CustomScorer<Vector3>
         for (int i = 0; i < count; i++)
         {
             Enemy enemy = enemies[i];
-            Vector3 dir = enemy.transform.position - position;
-            float range = dir.magnitude;
-            Ray ray = new Ray(position + Vector3.up, dir);
-
-            if (!Physics.Raycast(ray, range, LayerMask.GetMask("Obstacle")))
+            if (enemy)
             {
-                return this.score;
+                Vector3 dir = enemy.transform.position - position;
+                float range = dir.magnitude;
+                Ray ray = new Ray(position + Vector3.up, dir);
+
+                if (!Physics.Raycast(ray, range, LayerMask.GetMask("Obstacle")))
+                {
+                    return this.score;
+                }
             }
         }
 

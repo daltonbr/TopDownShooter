@@ -54,38 +54,38 @@ MonoBehaviour:
   devMode: 1
   waves:
   - infinite: 0
-    enemyCount: 5
+    enemyCount: 10
     timeBetweenSpawns: 1.5
     moveSpeed: 2
-    hitsToKillPlayer: 5
+    hitsToKillPlayer: 8
     enemyHealth: 1
     skinColor: {r: 0.07707905, g: 1, b: 0.04411763, a: 0}
   - infinite: 0
-    enemyCount: 30
-    timeBetweenSpawns: 0.65
-    moveSpeed: 2.5
-    hitsToKillPlayer: 4
+    enemyCount: 20
+    timeBetweenSpawns: 1.3
+    moveSpeed: 1.8
+    hitsToKillPlayer: 7
     enemyHealth: 1
     skinColor: {r: 0.28676468, g: 0.691, b: 1, a: 0}
   - infinite: 0
-    enemyCount: 100
-    timeBetweenSpawns: 0.55
-    moveSpeed: 3.2
-    hitsToKillPlayer: 3
+    enemyCount: 30
+    timeBetweenSpawns: 1.1
+    moveSpeed: 2.1
+    hitsToKillPlayer: 6
     enemyHealth: 1
     skinColor: {r: 1, g: 0, b: 0, a: 0}
   - infinite: 0
-    enemyCount: 3
-    timeBetweenSpawns: 2
-    moveSpeed: 3.2
-    hitsToKillPlayer: 3
+    enemyCount: 40
+    timeBetweenSpawns: 0.9
+    moveSpeed: 2.4
+    hitsToKillPlayer: 5
     enemyHealth: 1
     skinColor: {r: 1, g: 0.32156864, b: 0.7490196, a: 0}
   - infinite: 1
     enemyCount: -1
-    timeBetweenSpawns: 0.4
-    moveSpeed: 4
-    hitsToKillPlayer: 2
+    timeBetweenSpawns: 0.8
+    moveSpeed: 2.7
+    hitsToKillPlayer: 4
     enemyHealth: 1
     skinColor: {r: 0, g: 0, b: 0, a: 0.491}
   enemy: {fileID: 114230300785880278, guid: 330144030db6e48abb32af47c18650dd, type: 2}
@@ -100,4 +100,4 @@ MonoBehaviour:
   - {fileID: 114871434587450952, guid: b0234802b184a9e45b316365b962a150, type: 2}
   - {fileID: 114484460455762314, guid: 90c2335754c129b4a977e5599e89dd03, type: 2}
   gunsSpawnTime: {x: 3, y: 10}
-  gunsCapAmmount: 1
+  gunsCapAmmount: 3

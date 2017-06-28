@@ -205,7 +205,6 @@ GameObject:
   - component: {fileID: 114737420985109968}
   - component: {fileID: 114589680464609028}
   - component: {fileID: 195364019589130298}
-  - component: {fileID: 114242567636229640}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -751,7 +750,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a11d58a27ad4d49adb9f37c37f261a93, type: 2}
+  - {fileID: 2100000, guid: e10efea4395ca094b97730806c77781b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1132,21 +1131,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desiredPositionByAI: {x: 0, y: 0, z: 0}
---- !u!114 &114242567636229640
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1537194078531484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d82c4e27e9439d04fbb78b9e548d0220, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transparency: 0.3
-  spheres: []
-  radius: 0.3
-  prefab: {fileID: 1868664575650442, guid: 6ea1298bb0dccca47947fab31dc4c932, type: 2}
 --- !u!114 &114517760457965222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1200,6 +1184,8 @@ MonoBehaviour:
   debugPrefab: {fileID: 1868664575650442, guid: 6ea1298bb0dccca47947fab31dc4c932,
     type: 2}
   debugScoreText: {fileID: 0}
+  transparency: 0.25
+  radius: 0.5
 --- !u!114 &114591050151657612
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,6 +1,6 @@
 # TopDownShooter
 ## A Utility AI Bots in Unity3D's Top Down Shooter prototype
-![Utility AI Bot](http://imgur.com/8Z4DCQm "Debug Enabled")
+![Utility AI Bot](http://imgur.com/8Z4DCQm.png "Debug Enabled")
 
 ## This is a project based on [another tutorial from Sebastian Lague](https://www.youtube.com/watch?v=SviIeTt2_Lc&list=PLFt_AvWsXl0ctd4dgE1F8g3uec4zKNRV0) (an awesome developer and tutor, follow him on Youtube)
 

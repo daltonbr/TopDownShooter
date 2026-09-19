@@ -8,6 +8,9 @@ Inside this Top Down Shooter prototype, I implemented a Bot using the concept of
 
 > Originally built in Unity 2017 during my graduation; updated to Unity 6 about 9 years later so it still compiles and runs.
 
+## 2026 Modernization
+Brought the project from Unity 2017 to 6000.3, including a move from the Built-in Render Pipeline to URP: installed packages, converted materials, and fixed the camera stack.
+
 ## Youtube Teaser
 
 This project in action

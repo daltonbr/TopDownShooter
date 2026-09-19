@@ -41,7 +41,7 @@ public class MapGenerator : MonoBehaviour
         //Assert.AreNotEqual(0f, maxMapSize.y, "MapGenerator::maxMapSize.y couldn't be 0");
 
         // Subscribe this.OnNewWave to the event on Spawner
-        FindObjectOfType<Spawner>().OnNewWave += this.OnNewWave;
+        FindFirstObjectByType<Spawner>().OnNewWave += this.OnNewWave;
     }
 
     void OnNewWave(int waveNumber)

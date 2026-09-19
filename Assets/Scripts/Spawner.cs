@@ -54,14 +54,14 @@ public class Spawner : MonoBehaviour {
 
     private void Start()
     {
-        playerEntity = FindObjectOfType<Player>();
+        playerEntity = FindFirstObjectByType<Player>();
         playerT = playerEntity.transform;
 
         nextCampCheckTime = timeBetweenCampingChecks + Time.time;
         campPositionOld = playerT.position;
         playerEntity.OnDeath += OnPlayerDeath;
 
-        map = FindObjectOfType<MapGenerator>();
+        map = FindFirstObjectByType<MapGenerator>();
         Assert.IsNotNull(map, "Spawner::Start() - Error: Can't find a MapGenerator!");
         NextWave();
     }
@@ -113,7 +113,7 @@ public class Spawner : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 StopCoroutine("SpawnEnemy");
-                foreach(Enemy enemy in FindObjectsOfType<Enemy>())
+                foreach(Enemy enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
                 {
                     GameObject.Destroy(enemy.gameObject);
                 }

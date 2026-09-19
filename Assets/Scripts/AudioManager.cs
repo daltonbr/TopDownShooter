@@ -60,10 +60,10 @@ public class AudioManager : MonoBehaviour
             sfx2DSource.outputAudioMixerGroup = mixer.FindMatchingGroups("FX")[0];
 			newSfx2Dsource.transform.parent = transform;
 
-			audioListener = FindObjectOfType<AudioListener> ().transform;
-			if (FindObjectOfType<Player> () != null)
+			audioListener = FindFirstObjectByType<AudioListener> ().transform;
+			if (FindFirstObjectByType<Player> () != null)
             {
-				playerT = FindObjectOfType<Player> ().transform;
+				playerT = FindFirstObjectByType<Player> ().transform;
 			}
 
             masterVolumePercent = PlayerPrefs.GetFloat("master vol", 1.0f);
@@ -86,9 +86,9 @@ public class AudioManager : MonoBehaviour
         //Debug.Log("[AudioManager] A scene name: "+ scene.name + " was loaded!");
         if (playerT == null)
         {
-            if (FindObjectOfType<Player>() != null)
+            if (FindFirstObjectByType<Player>() != null)
             {
-                playerT = FindObjectOfType<Player>().transform;
+                playerT = FindFirstObjectByType<Player>().transform;
             }
         }
     }

@@ -28,7 +28,7 @@ public class GameUI : MonoBehaviour {
 
     private void Start()
     {
-        player = FindObjectOfType<Player>();
+        player = FindFirstObjectByType<Player>();
         player.OnDeath += OnGameOver;
         player.OnChangeHPValue += this.OnUpdateHPValue;
     }
@@ -37,7 +37,7 @@ public class GameUI : MonoBehaviour {
     {
         Assert.IsNotNull(gameOverUI);
         Assert.IsNotNull(fadePlane);
-        spawner = FindObjectOfType<Spawner>();
+        spawner = FindFirstObjectByType<Spawner>();
         spawner.OnNewWave += OnNewWave;
 
     }

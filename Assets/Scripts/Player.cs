@@ -47,7 +47,7 @@ public class Player : LivingEntity
         controller = GetComponent<PlayerController>();
         gunController = GetComponent<GunController>() as GunController;
         viewCamera = Camera.main;
-        FindObjectOfType<Spawner>().OnNewWave += OnNewWave;
+        FindFirstObjectByType<Spawner>().OnNewWave += OnNewWave;
         currentHealthPacks = startingHealthPacks;
         spawnPoint = this.transform.position;
         agent = this.GetComponent<NavMeshAgent>();

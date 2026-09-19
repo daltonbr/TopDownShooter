@@ -41,7 +41,7 @@ public class MapGenerator : MonoBehaviour
         //Assert.AreNotEqual(0f, maxMapSize.y, "MapGenerator::maxMapSize.y couldn't be 0");
 
         // Subscribe this.OnNewWave to the event on Spawner
-        FindObjectOfType<Spawner>().OnNewWave += this.OnNewWave;
+        FindFirstObjectByType<Spawner>().OnNewWave += this.OnNewWave;
     }
 
     void OnNewWave(int waveNumber)
@@ -254,6 +254,16 @@ public class MapGenerator : MonoBehaviour
         public static bool operator !=(Coord c1, Coord c2)
         {
             return !(c1 == c2);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Coord other && this == other;
+        }
+
+        public override int GetHashCode()
+        {
+            return System.HashCode.Combine(x, y);
         }
     }
 

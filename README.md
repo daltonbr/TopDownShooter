@@ -1,8 +1,12 @@
 # TopDownShooter
 
+![Unity](https://img.shields.io/badge/Unity-6000.3.24f1-black?logo=unity)
+
 ## A **Utility AI** Bot in Unity3D
 
-Inside this Top Down Shooter prototype, I implemented a Bot using the concept of *Utility AI*
+Inside this Top Down Shooter prototype, I implemented a Bot using the concept of *Utility AI*.
+
+> Originally built in Unity 2017 during my graduation; updated to Unity 6 about 9 years later so it still compiles and runs.
 
 ## Youtube Teaser
 
@@ -24,14 +28,12 @@ Utility AI uses a reasoning system, that is essentially a scored-base algorithm 
 In this implementation, we calculate the best position that the bot should move (considering some strategic goals) inside the scanned positions (represented by the little spheres).
 
 ## Debug Tool
-I've also made a Debug Tool that helps the Game Designer tune the Scanner (the grid of spheres). This tool shows color-graded spheres with a score, that represent every position used by the Scanner to evaluate the best position to move.
-The designer can tweak several key aspects of the Scanner, but it must be done with caution, in incremental steps, to avoid overwhelming the computational power. We can, for example, expand the grid size (or the sampling density) while to compensate, we diminish the refresh interval.
+A Debug Tool helps tune the Scanner (the grid of spheres): color-graded spheres show the score of every position the Scanner evaluates when picking where to move. The grid size and sampling density can be tweaked, but incrementally, since a bigger grid costs more to compute.
 
 ## Tweaks and maintainability
-Another key aspect of this Utility AI approach is the ability (trough scripts and methods - [e.g. this specific script](https://github.com/daltonbr/TopDownShooter/blob/master/Assets/Scripts/AIManager/MoveToBestPosition.cs) ) to add, remove or tweak several  "considerations" or "reasonings", such as distance from the player to the nearest Pickup, nearest Enemy, the amount of ammo, amount of life. All these things have their respective "weight" and by tweaking, adding or removing them, we can achieve quickly several different behaviors.
-If for example, we want to make the bot avoid bombs, we add a simple method that considers the distance between the player and the nearest bomb, and we give it a weight to that consideration, some sort of precedence order.
+Considerations, such as distance to the nearest Pickup, Enemy, ammo, or life, each carry a weight, so behaviors can be added, removed, or tuned quickly, for example [in this script](https://github.com/daltonbr/TopDownShooter/blob/master/Assets/Scripts/AIManager/MoveToBestPosition.cs). Adding a new consideration, like avoiding bombs, is just a new weighted distance check.
 
 ## Conclusion
-This approach is much more easy to maintain and tweak when compared to the well-established, but harder to tweak, FSM (Finite State Machines) or Behaviour-Trees.
+This approach is easier to maintain and tweak than the more established FSMs (Finite State Machines) or Behaviour Trees.
 
-If you want to talk more about this and others AI approaches, just give me a shout!
+If you want to talk more about this and other AI approaches, just give me a shout!

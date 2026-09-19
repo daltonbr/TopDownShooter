@@ -31,9 +31,4 @@ In this implementation, we calculate the best position that the bot should move 
 A Debug Tool helps tune the Scanner (the grid of spheres): color-graded spheres show the score of every position the Scanner evaluates when picking where to move. The grid size and sampling density can be tweaked, but incrementally, since a bigger grid costs more to compute.
 
 ## Tweaks and maintainability
-Considerations, such as distance to the nearest Pickup, Enemy, ammo, or life, each carry a weight, so behaviors can be added, removed, or tuned quickly, for example [in this script](https://github.com/daltonbr/TopDownShooter/blob/master/Assets/Scripts/AIManager/MoveToBestPosition.cs). Adding a new consideration, like avoiding bombs, is just a new weighted distance check.
-
-## Conclusion
-This approach is easier to maintain and tweak than the more established FSMs (Finite State Machines) or Behaviour Trees.
-
-If you want to talk more about this and other AI approaches, just give me a shout!
+Considerations, such as distance to the nearest Pickup, Enemy, ammo, or life, each carry a weight, so behaviors can be added, removed, or tuned quickly, for example [in this script](https://github.com/daltonbr/TopDownShooter/blob/master/Assets/Scripts/AIManager/MoveToBestPosition.cs). Adding a new consideration, like avoiding bombs, is just a new weighted distance check. This approach is easier to maintain and tweak than the more established FSMs (Finite State Machines) or Behaviour Trees.

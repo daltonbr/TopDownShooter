@@ -255,6 +255,16 @@ public class MapGenerator : MonoBehaviour
         {
             return !(c1 == c2);
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Coord other && this == other;
+        }
+
+        public override int GetHashCode()
+        {
+            return System.HashCode.Combine(x, y);
+        }
     }
 
     [System.Serializable]
